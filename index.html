@@ -35,23 +35,23 @@ nav.main a.navlink{text-decoration:none;color:var(--ink);font-weight:600;font-si
 .cta.ghost{background:transparent;color:#fff;border:2px solid #fff}
 
 /* hero */
-header.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:84px 0 96px;position:relative;overflow:hidden}
+header.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:76px 0 84px;position:relative;overflow:hidden}
 header.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 118px,rgba(255,255,255,.035) 118px 120px)}
 header.hero .wrap{position:relative;z-index:1}
 .hero-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
 .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 14px;font-size:.8rem;font-weight:600}
-header.hero h1{font-size:2.9rem;line-height:1.12;font-weight:800;max-width:760px}
+header.hero h1{font-size:clamp(1.9rem,5.2vw,2.9rem);line-height:1.12;font-weight:800;max-width:760px}
 header.hero h1 em{color:var(--amber);font-style:normal}
-header.hero p.lead{margin:18px 0 30px;font-size:1.15rem;color:#c8d3dc;max-width:600px}
+header.hero p.lead{margin:18px 0 30px;font-size:clamp(.98rem,2.2vw,1.15rem);color:#c8d3dc;max-width:600px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 
 /* sections */
-section{padding:72px 0}
+section{padding:60px 0}
 section.alt{background:#fff}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-@media(max-width:860px){.grid4,.grid3,.grid2{grid-template-columns:1fr}header.hero h1{font-size:2.1rem}}
+@media(max-width:860px){.grid4,.grid3,.grid2{grid-template-columns:1fr}.hero-visual{display:none}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
 .card h3{margin-bottom:8px;font-size:1.08rem}
 .card p{color:var(--muted);font-size:.93rem}
@@ -102,6 +102,15 @@ footer a{color:#c9d4de;text-decoration:none}
 .bot-input{display:flex;border-top:1px solid var(--line)}
 .bot-input input{border:none;border-radius:0;flex:1}
 .bot-input button{background:var(--amber);color:#fff;border:none;padding:0 18px;font-weight:700;cursor:pointer}
+
+@media(max-width:700px){
+  nav.main ul{display:none}
+  .topbar .wrap{flex-direction:column;gap:4px;font-size:.78rem;text-align:center}
+  .hero-ctas a.cta{flex:1;min-width:140px;text-align:center}
+  #bot-fab{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:10px 14px;font-size:.88rem}
+  #bot-panel{bottom:calc(70px + env(safe-area-inset-bottom));max-height:72vh}
+  #bot-log{height:min(280px,48vh)}
+}
 </style>
 </head>
 <body>
@@ -126,7 +135,8 @@ footer a{color:#c9d4de;text-decoration:none}
 </nav>
 
 <header class="hero">
-  <div class="wrap">
+  <div class="wrap" style="display:flex;gap:40px;align-items:center;position:relative;z-index:1;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
     <div class="hero-chips">
       <span class="chip">ROC 339036</span>
       <span class="chip">Residential & Commercial</span>
@@ -138,6 +148,21 @@ footer a{color:#c9d4de;text-decoration:none}
     <div class="hero-ctas">
       <a class="cta" href="#estimate">Get My Free Estimate</a>
       <a class="cta ghost" href="tel:6027152510">Call 602.715.2510</a>
+    </div>
+    </div>
+    <div class="hero-visual" style="width:270px;flex-shrink:0;display:flex;flex-direction:column;gap:14px">
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
+        <div style="font-size:2.2rem;font-weight:800;color:var(--amber)">25+</div>
+        <div style="font-size:.85rem;color:#c8d3dc">Years in the trade</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
+        <div style="font-size:1.3rem;font-weight:800;color:var(--amber)">ROC 339036</div>
+        <div style="font-size:.85rem;color:#c8d3dc">Licensed &amp; bonded</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
+        <div style="font-size:2.2rem;font-weight:800;color:var(--amber)">2nd</div>
+        <div style="font-size:.85rem;color:#c8d3dc">Generation family trade</div>
+      </div>
     </div>
   </div>
 </header>
