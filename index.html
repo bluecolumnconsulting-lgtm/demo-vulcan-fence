@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vulcan Fence LLC — Iron, Chain Link & Custom Fencing | Phoenix, AZ</title>
+<meta name="description" content="Second-generation fencers & welders. Iron, chain link, masonry, security & privacy fencing built to last. ROC 339036. Free estimates — Phoenix Metro.">
+<!-- DEMO SITE — built by BlueColumn AI as a sales demo for Vulcan Fence LLC. Not affiliated with vulcanfenceaz.com. -->
+<style>
+:root{
+  --ink:#141a20; --steel:#243039; --slate:#3b4c59; --amber:#e8862e; --amber-dk:#c96d1a;
+  --bg:#f7f6f3; --card:#ffffff; --line:#e3e0da; --muted:#6b7681;
+  --hero1:#1a232b; --hero2:#2c3b47;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h2.sec{font-size:2rem;margin-bottom:.4em}
+p.sub{color:var(--muted);margin-bottom:2.2rem;max-width:640px}
+
+/* top bar */
+.topbar{background:var(--steel);color:#dbe4ec;font-size:.85rem;padding:8px 0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar b{color:#fff}
+.topbar a{color:var(--amber);font-weight:700;text-decoration:none}
+nav.main{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+nav.main .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:.5px}
+.logo span{color:var(--amber)}
+nav.main ul{display:flex;gap:24px;list-style:none}
+nav.main a.navlink{text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
+.cta{display:inline-block;background:var(--amber);color:#fff;padding:10px 22px;border-radius:6px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-size:.95rem}
+.cta:hover{background:var(--amber-dk)}
+.cta.ghost{background:transparent;color:#fff;border:2px solid #fff}
+
+/* hero */
+header.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:84px 0 96px;position:relative;overflow:hidden}
+header.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 118px,rgba(255,255,255,.035) 118px 120px)}
+header.hero .wrap{position:relative;z-index:1}
+.hero-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 14px;font-size:.8rem;font-weight:600}
+header.hero h1{font-size:2.9rem;line-height:1.12;font-weight:800;max-width:760px}
+header.hero h1 em{color:var(--amber);font-style:normal}
+header.hero p.lead{margin:18px 0 30px;font-size:1.15rem;color:#c8d3dc;max-width:600px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+
+/* sections */
+section{padding:72px 0}
+section.alt{background:#fff}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+@media(max-width:860px){.grid4,.grid3,.grid2{grid-template-columns:1fr}header.hero h1{font-size:2.1rem}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+.card h3{margin-bottom:8px;font-size:1.08rem}
+.card p{color:var(--muted);font-size:.93rem}
+.card ul{margin:10px 0 0 18px;color:var(--muted);font-size:.9rem}
+.card ul li{margin-bottom:4px}
+.card .mini-cta{display:inline-block;margin-top:14px;color:var(--amber-dk);font-weight:700;font-size:.9rem;text-decoration:none}
+.ico{font-size:1.6rem;margin-bottom:10px;display:block}
+
+/* steps */
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .n{background:var(--amber);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+
+/* credentials strip */
+.creds{background:var(--steel);color:#c9d4de;padding:34px 0;text-align:center;font-size:.95rem}
+.creds b{color:#fff}
+.creds span{margin:0 18px;white-space:nowrap}
+
+/* gallery placeholders */
+.ph{background:linear-gradient(135deg,#3d4c58,#5a6b78);border-radius:10px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#e8edf2;font-weight:700;text-align:center;padding:12px;font-size:.9rem}
+
+/* form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
+label{font-weight:600;font-size:.88rem;display:block;margin-bottom:5px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;font-family:inherit;background:#fff}
+.full{grid-column:1/-1}
+
+/* footer */
+footer{background:var(--ink);color:#9aa7b1;padding:56px 0 28px;font-size:.92rem}
+footer h4{color:#fff;margin-bottom:12px}
+footer ul{list-style:none}
+footer li{margin-bottom:6px}
+footer a{color:#c9d4de;text-decoration:none}
+.foot-bottom{border-top:1px solid #2a333b;margin-top:36px;padding-top:20px;text-align:center;font-size:.82rem}
+.demo-note{background:#fff6e8;border:1px solid #f0d9b0;color:#7a5a1e;font-size:.8rem;text-align:center;padding:8px}
+
+/* chat bot */
+#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:13px 20px;font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28)}
+#bot-panel{position:fixed;bottom:80px;right:22px;width:340px;max-width:calc(100vw - 32px);background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:101;display:none;flex-direction:column;overflow:hidden}
+#bot-panel.open{display:flex}
+.bot-head{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.bot-avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800}
+.bot-head small{display:block;opacity:.75;font-weight:400}
+#bot-log{padding:14px;height:300px;overflow-y:auto;background:#f4f5f6;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.9rem}
+.msg.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:3px}
+.msg.user{background:var(--amber);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.bot-input{display:flex;border-top:1px solid var(--line)}
+.bot-input input{border:none;border-radius:0;flex:1}
+.bot-input button{background:var(--amber);color:#fff;border:none;padding:0 18px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div><b>Licensed & Bonded</b> · ROC 339036</div>
+    <div>Second-Generation Craftsmen · Phoenix, AZ · <a href="tel:6027152510">602.715.2510</a></div>
+  </div>
+</div>
+
+<nav class="main">
+  <div class="wrap">
+    <div class="logo">VULCAN<span>FENCE</span></div>
+    <ul>
+      <li><a class="navlink" href="#services">Services</a></li>
+      <li><a class="navlink" href="#work">Our Work</a></li>
+      <li><a class="navlink" href="#estimate">Contact</a></li>
+    </ul>
+    <a class="cta" href="#estimate">Free Estimate</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-chips">
+      <span class="chip">ROC 339036</span>
+      <span class="chip">Residential & Commercial</span>
+      <span class="chip">25+ Years Experience</span>
+      <span class="chip">Phoenix Metro</span>
+    </div>
+    <h1>Built By Fencers &amp; Welders.<br><em>Forged To Last.</em></h1>
+    <p class="lead">Iron, chain link, masonry, security and privacy fencing — custom fabricated by a second-generation family trade. Quality you can see, workmanship that holds.</p>
+    <div class="hero-ctas">
+      <a class="cta" href="#estimate">Get My Free Estimate</a>
+      <a class="cta ghost" href="tel:6027152510">Call 602.715.2510</a>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="why">
+  <div class="wrap">
+    <h2 class="sec">Why Vulcan Fence</h2>
+    <p class="sub">We are the second generation of a family of fencers and welders — the trade is in the blood, and the standards show in every weld, post, and panel.</p>
+    <div class="grid4">
+      <div class="card"><span class="ico">🔥</span><h3>Family Trade, 25+ Years</h3><p>Two generations of fencers and welders. Not a franchise — craftsmen.</p></div>
+      <div class="card"><span class="ico">🛠️</span><h3>Custom Fabrication</h3><p>Iron and steel work built in-house to your property's exact specs.</p></div>
+      <div class="card"><span class="ico">🏗️</span><h3>Residential & Commercial</h3><p>Backyards to job sites — security, privacy, and decorative systems.</p></div>
+      <div class="card"><span class="ico">📋</span><h3>Licensed & Bonded</h3><p>ROC 339036. Fully credentialed Arizona contractor, no shortcuts.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <h2 class="sec">What We Build</h2>
+    <p class="sub">Masters of many trades — every system below is built by our own crew, not subcontracted out.</p>
+    <div class="grid3">
+      <div class="card"><h3>Iron / Welding</h3><p>Ornamental iron, security bars, custom weldments.</p><ul><li>Decorative & security iron</li><li>In-house welding</li><li>Powder-coat ready finishes</li></ul><a class="mini-cta" href="#estimate">Price my iron work →</a></div>
+      <div class="card"><h3>Chain Link</h3><p>The workhorse — done right, tensioned tight.</p><ul><li>Residential & commercial</li><li>Gates & access points</li><li>Repairs & extensions</li></ul><a class="mini-cta" href="#estimate">Get chain link pricing →</a></div>
+      <div class="card"><h3>Masonry</h3><p>Block walls that stand for decades.</p><ul><li>Privacy block walls</li><li>Decorative caps</li><li>Repairs & rebuilds</li></ul><a class="mini-cta" href="#estimate">Quote my block wall →</a></div>
+      <div class="card"><h3>Security</h3><p>Barriers that keep people out.</p><ul><li>Security fencing systems</li><li>Barbed tape & razor wire</li><li>Commercial perimeters</li></ul><a class="mini-cta" href="#estimate">Secure my property →</a></div>
+      <div class="card"><h3>Privacy</h3><p>Quiet, private, and clean-looking.</p><ul><li>Solid panel systems</li><li>Screen walls</li><li>Noise-reducing builds</li></ul><a class="mini-cta" href="#estimate">Plan my privacy fence →</a></div>
+      <div class="card"><h3>Custom</h3><p>If you can draw it, we can weld it.</p><ul><li>Custom gates & entries</li><li>Mixed-material designs</li><li>One-off architectural work</li></ul><a class="mini-cta" href="#estimate">Design my custom build →</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="creds">
+  <span><b>ROC 339036</b></span><span><b>Licensed & Bonded</b></span><span><b>Second-Generation Family Trade</b></span><span><b>Phoenix, Arizona</b></span>
+</div>
+
+<section class="alt" id="work">
+  <div class="wrap">
+    <h2 class="sec">Our Work</h2>
+    <p class="sub">A sample of what we build across the Valley. <em>(Demo — photo slots ready for Vulcan's real project gallery.)</em></p>
+    <div class="grid3">
+      <div class="ph">Ornamental Iron Gate — Placeholder</div>
+      <div class="ph">Commercial Chain Link — Placeholder</div>
+      <div class="ph">Block Wall w/ Cap — Placeholder</div>
+      <div class="ph">Security Perimeter — Placeholder</div>
+      <div class="ph">Privacy Screen Wall — Placeholder</div>
+      <div class="ph">Custom Weldment — Placeholder</div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2 class="sec">How It Works</h2>
+    <p class="sub">Straightforward, like a handshake should be.</p>
+    <div class="grid3">
+      <div class="step"><div class="n">1</div><div><h3>Tell Us What You Need</h3><p style="color:var(--muted);font-size:.93rem">Call, chat with VulcanBot, or fill the form. We walk the property and answer the right questions.</p></div></div>
+      <div class="step"><div class="n">2</div><div><h3>Clear Written Estimate</h3><p style="color:var(--muted);font-size:.93rem">Scope, materials, timeline. No mystery fees, no pressure.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h3>Built By Our Crew</h3><p style="color:var(--muted);font-size:.93rem">Our welders and fencers do the work. Site left clean. Built to last.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="estimate">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <h2 class="sec">Ready To Build?</h2>
+        <p class="sub">Tell us about your project and we'll get back to you fast. Prefer to talk? Call <b><a href="tel:6027152510" style="color:var(--amber-dk)">602.715.2510</a></b> — or ask VulcanBot right now.</p>
+        <div class="card" style="margin-top:18px">
+          <h3>📞 Contact</h3>
+          <p><b>Phone:</b> 602.715.2510<br><b>Location:</b> Phoenix, Arizona<br><b>Service Area:</b> Phoenix Metro &amp; surrounding<br><b>License:</b> ROC 339036 — Licensed &amp; Bonded</p>
+        </div>
+      </div>
+      <form class="card" id="lead-form">
+        <h3 style="margin-bottom:16px">Request Your Free Estimate</h3>
+        <div class="form-grid">
+          <div><label for="f-name">Name *</label><input id="f-name" required placeholder="Your name"></div>
+          <div><label for="f-phone">Phone *</label><input id="f-phone" type="tel" required placeholder="(602) 555-0123"></div>
+          <div class="full"><label for="f-addr">Property address or cross streets</label><input id="f-addr" placeholder="e.g. 35th Ave & Peoria, Phoenix"></div>
+          <div class="full"><label for="f-type">Fence Type *</label>
+            <select id="f-type" required>
+              <option value="">Select a service…</option>
+              <option>Iron / Welding</option><option>Chain Link</option><option>Masonry / Block Wall</option>
+              <option>Security Fencing</option><option>Privacy</option><option>Custom</option><option>Not Sure</option>
+            </select></div>
+          <div class="full"><label for="f-notes">Project details</label><textarea id="f-notes" rows="3" placeholder="Linear feet, gates, height, timeline…"></textarea></div>
+          <div class="full"><button class="cta" type="submit" style="width:100%">Get My Free Estimate</button></div>
+        </div>
+        <p id="form-ok" style="display:none;color:#1d7a3e;font-weight:700;margin-top:12px">✓ Got it — Vulcan will reach out shortly. (Demo: leads are captured locally.)</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="demo-note">DEMO WEBSITE — Built by BlueColumn AI (bluecolumn.ai) to show Vulcan Fence what a modern site + AI assistant could look like. Not affiliated with Vulcan Fence LLC.</div>
+
+<footer>
+  <div class="wrap">
+    <div class="grid4">
+      <div><h4>Vulcan Fence LLC</h4><p>Second-generation fencers &amp; welders serving Phoenix since day one. ROC 339036.</p></div>
+      <div><h4>Services</h4><ul><li>Iron / Welding</li><li>Chain Link</li><li>Masonry</li><li>Security</li><li>Privacy</li><li>Custom</li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:6027152510">602.715.2510</a></li><li>Phoenix, AZ</li><li>Phoenix Metro</li></ul></div>
+      <div><h4>Ready to Start?</h4><p>Free estimates, fast response.</p><a class="cta" href="#estimate">Get Free Estimate</a></div>
+    </div>
+    <div class="foot-bottom">© 2026 Vulcan Fence LLC · ROC 339036 · Licensed &amp; Bonded</div>
+  </div>
+</footer>
+
+<!-- VulcanBot -->
+<button id="bot-fab" onclick="toggleBot()">🔥 Ask VulcanBot</button>
+<div id="bot-panel" role="dialog" aria-label="VulcanBot chat">
+  <div class="bot-head"><div class="bot-avatar">🔥</div><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div></div>
+  <div id="bot-log"></div>
+  <div class="bot-input">
+    <input id="bot-in" placeholder="Ask about pricing, services…" aria-label="Message VulcanBot">
+    <button onclick="botSend()">Send</button>
+  </div>
+</div>
+
+<script>
+/* Lead form — demo captures locally; production wires to CRM/Twilio webhook */
+document.getElementById('lead-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const lead={name:fn.value,phone:fp.value,addr:fa.value,type:ft.value,notes:fn2.value,at:new Date().toISOString()};
+  const leads=JSON.parse(localStorage.getItem('vulcan_leads')||'[]');leads.push(lead);
+  localStorage.setItem('vulcan_leads',JSON.stringify(leads));
+  document.getElementById('form-ok').style.display='block';e.target.reset();
+});
+const fn=document.getElementById('f-name'),fp=document.getElementById('f-phone'),fa=document.getElementById('f-addr'),ft=document.getElementById('f-type'),fn2=document.getElementById('f-notes');
+
+/* VulcanBot — scripted demo brain (swap in live AI backend at launch) */
+const RULES=[
+  {k:['price','cost','how much','quote','estimate'],r:"Every project is priced on linear footage, height, and material. I can't give exact numbers without the property details — but a free estimate takes about a minute. Want to fill the form, or should I take your name and number?"},
+  {k:['iron','weld','metal','ornamental'],r:"Iron and welding is our specialty — second-generation welders. Ornamental iron, security bars, custom gates, all fabricated to your specs. Tell me roughly what you have in mind?"},
+  {k:['chain link'],r:"We do residential and commercial chain link — new installs, repairs, extensions, and gates. How many linear feet, roughly?"},
+  {k:['block','masonry','wall'],r:"Block walls are one of our core trades — privacy walls, decorative caps, repairs, and rebuilds. Height and footage matter most for pricing. I can set up a free estimate."},
+  {k:['security','razor','barbed','commercial'],r:"Security fencing is a big part of our commercial work — perimeter systems, barbed tape, razor wire. Licensed & bonded, ROC 339036. What kind of property?"},
+  {k:['privacy'],r:"Privacy fencing — solid panels, screen walls, even noise-reducing builds. A free estimate gets you exact options and numbers."},
+  {k:['gate'],r:"Gates, yes — manual and custom, walk gates to drive gates, all welded in-house. Part of the free estimate."},
+  {k:['hours','open','when'],r:"We respond to requests fast — usually same day. Drop your details in the estimate form or leave them here and Vulcan Fence will call you back."},
+  {k:['license','roc','insured','bonded'],r:"Fully licensed and bonded — Arizona ROC 339036. Second-generation family trade with 25+ years of experience."},
+  {k:['phone','call','talk','human'],r:"You can reach Vulcan Fence directly at 602.715.2510. Or leave your number here and they'll call you."},
+  {k:['hello','hi','hey','yo'],r:"Hey — VulcanBot here. I can answer questions about iron work, chain link, block walls, security fencing, or help you get a free estimate. What do you need?"},
+  {k:['thank','thanks'],r:"Anytime. If you want that free estimate, the form takes a minute — or call 602.715.2510."}
+];
+const FALLBACK="Good question — I can help with services, pricing approach, and setting up your free estimate. You can also call Vulcan Fence directly at 602.715.2510.";
+const log=document.getElementById('bot-log'),botIn=document.getElementById('bot-in');
+function toggleBot(){document.getElementById('bot-panel').classList.toggle('open');if(log.children.length===0)botSay("Hey — VulcanBot here. Ask me about our fencing services or get a free estimate started. 🔥");}
+function addMsg(t,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+function botSay(t){addMsg(t,'bot');}
+function botSend(txt){
+  txt=(txt||botIn.value).trim();if(!txt)return;
+  addMsg(txt,'user');botIn.value='';
+  const low=txt.toLowerCase();
+  const hit=RULES.find(r=>r.k.some(k=>low.includes(k)));
+  setTimeout(()=>botSay(hit?hit.r:FALLBACK),420);
+}
+botIn.addEventListener('keydown',e=>{if(e.key==='Enter')botSend();});
+</script>
+</body>
+</html>
