@@ -1,0 +1,71 @@
+{
+  "routes": [
+    { "min": 80, "name": "priority_outreach", "action": "immediate_contact" },
+    { "min": 50, "name": "nurture", "action": "add_to_sequence" },
+    { "min": 0, "name": "archive", "action": "store_only" }
+  ],
+  "weights": {
+    "consumer_intent": {
+      "pain_high": 25,
+      "pain_medium": 12,
+      "signals_value": 15,
+      "project_size_bonus": 10,
+      "recent_post_bonus": 8,
+      "has_replies": 5,
+      "base_score": 25
+    },
+    "b2b_partner": {
+      "has_website": 20,
+      "has_contact_url": 15,
+      "has_phone": 10,
+      "retailer_signals": 15,
+      "service_signals": 12,
+      "brand_signals": 10,
+      "has_rating": 5,
+      "high_rating_bonus": 8,
+      "base_score": 15
+    },
+    "investor": {
+      "thesis_tags_match": 20,
+      "portfolio_match": 25,
+      "has_contact_url": 15,
+      "stage_match": 10,
+      "recent_investment": 10,
+      "base_score": 20
+    }
+  },
+  "outreach_templates": {
+    "consumer_intent": {
+      "priority_outreach": "Hi {name}, I noticed your post about {pain_point}. Vulcan Fence does free estimates across Phoenix — want me to set one up so you have real numbers this week?",
+      "nurture": "Hey {name}, saw you're dealing with {pain_point}. We've got some tips that might help — interested?"
+    },
+    "b2b_partner": {
+      "priority_outreach": "Hi {company_name}, Vulcan Fence handles fencing and wall work for property managers across Phoenix Metro. Interested in a vendor partnership for repairs and installs?",
+      "nurture": "Hello {company_name}, we work with property managers and HOAs in your area. Would love to be on your vendor list for fence, gate, and block wall work."
+    },
+    "investor": {
+      "priority_outreach": "Hi {partner_name}, Vulcan Fence is a 25-year licensed contractor showing what AI-forward home services look like. Your thesis in {thesis_match} aligns well — open to a quick intro?",
+      "nurture": "Hello {firm_name}, Vulcan Fence is modernizing a trade that hasn't changed in decades. Happy to share our numbers."
+    }
+  },
+  "cta_suggestions": {
+    "consumer_intent": [
+      "Offer free written estimate",
+      "Send photo gallery of similar builds",
+      "Schedule site walk",
+      "Share ROC license + insurance info"
+    ],
+    "b2b_partner": [
+      "Send vendor packet + W-9",
+      "Schedule walkthrough of recent projects",
+      "Offer preferred-partner pricing",
+      "Share references from other property managers"
+    ],
+    "investor": [
+      "Send pitch deck",
+      "Schedule intro call",
+      "Share traction metrics",
+      "Invite to a live job-site demo"
+    ]
+  }
+}

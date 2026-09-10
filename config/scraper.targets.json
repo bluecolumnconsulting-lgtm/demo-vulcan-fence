@@ -1,0 +1,103 @@
+{
+  "industry": "fencing",
+  "disableOldIndustry": true,
+  "oldIndustryPatterns": ["skimmer", "reef", "aquarium", "ottomedic", "jetski", "dolphin"],
+  "domains": {
+    "rateLimitMs": 2500,
+    "maxConcurrency": 2
+  },
+  "targets": [
+    {
+      "id": "fencing_reddit_intent",
+      "lead_type": "consumer_intent",
+      "adapter": "RedditAdapter",
+      "enabled": true,
+      "tier": "free",
+      "interval_minutes": 240,
+      "subreddits": ["Fencing", "HomeImprovement", "HomeMaintenance"],
+      "queries": [
+        "fence broken",
+        "gate sagging",
+        "quote high",
+        "HOA fence",
+        "storm damage fence",
+        "fence contractor recommendation phoenix",
+        "block wall repair"
+      ],
+      "extract": {
+        "fields": ["title", "url", "date", "excerpt", "author", "subreddit"]
+      }
+    },
+    {
+      "id": "fencing_forum_intent",
+      "lead_type": "consumer_intent",
+      "adapter": "GenericForumAdapter",
+      "enabled": true,
+      "tier": "free",
+      "interval_minutes": 360,
+      "seedUrls": [
+        "https://www.diychatroom.com/search/?q={QUERY}",
+        "https://www.doityourself.com/forum/search.php?do=process&query={QUERY}",
+        "https://www.houzz.com/discussions/query/{QUERY}"
+      ],
+      "queries": [
+        "fence broken",
+        "gate sagging",
+        "fence quote too high",
+        "HOA fence rules",
+        "storm damage fence",
+        "iron fence welding repair",
+        "chain link replacement"
+      ],
+      "extract": {
+        "fields": ["title", "url", "date", "excerpt", "author", "replies"]
+      }
+    },
+    {
+      "id": "property_manager_partners",
+      "lead_type": "b2b_partner",
+      "adapter": "GenericDirectoryAdapter",
+      "enabled": true,
+      "tier": "low_cost",
+      "interval_minutes": 2880,
+      "seedUrls": [
+        "https://www.yelp.com/search?find_desc=property+management&find_loc={LOCATION}",
+        "https://www.google.com/maps/search/property+management+{LOCATION}"
+      ],
+      "locations": ["Phoenix, AZ", "Mesa, AZ", "Chandler, AZ", "Glendale, AZ", "Scottsdale, AZ", "Gilbert, AZ"],
+      "extract": {
+        "fields": ["company_name", "website", "contact_url", "location", "phone", "rating", "reviews_count"]
+      }
+    },
+    {
+      "id": "fence_material_suppliers",
+      "lead_type": "b2b_partner",
+      "adapter": "GenericDirectoryAdapter",
+      "enabled": true,
+      "tier": "low_cost",
+      "interval_minutes": 10080,
+      "seedUrls": [
+        "https://www.yelp.com/search?find_desc=fence+supply&find_loc={LOCATION}"
+      ],
+      "locations": ["Phoenix, AZ", "Tucson, AZ"],
+      "extract": {
+        "fields": ["company_name", "website", "contact_url", "location", "phone", "category"]
+      }
+    },
+    {
+      "id": "investor_portfolios",
+      "lead_type": "investor",
+      "adapter": "GenericPortfolioAdapter",
+      "enabled": true,
+      "tier": "low_cost",
+      "interval_minutes": 10080,
+      "seedUrls": [
+        "https://www.crunchbase.com/search/organizations/field/organizations/categories/construction",
+        "https://www.crunchbase.com/search/organizations/field/organizations/categories/home-services"
+      ],
+      "extract": {
+        "fields": ["firm_name", "partner_names", "thesis_excerpt", "contact_url", "portfolio_companies", "investment_stage"]
+      }
+    }
+  ]
+}

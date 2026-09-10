@@ -1,0 +1,63 @@
+{
+  "consumer_intent": {
+    "pain_high": [
+      "fence broken", "fence fell", "gate sagging", "gate won't close", "gate dragging",
+      "storm damage", "wind damage", "knocked down", "collapsed wall", "wall cracked",
+      "emergency", "safety", "pool fence", "not up to code", "notice from city",
+      "HOA violation", "hoa letter", "dogs getting out", "broken latch"
+    ],
+    "pain_medium": [
+      "quote high", "quote too high", "estimate comparison", "how much should", "fair price",
+      "fence repair", "fence replacement", "leaning", "rust", "rusted", "rotten post",
+      "chain link", "block wall", "iron fence", "gate repair", "permit", "hoa fence",
+      "neighbor dispute", "property line"
+    ],
+    "signals_value": [
+      "acres", "half acre", "commercial property", "rental property", "new build",
+      "pool", "dogs", "security", "hoa", "permits", "custom", "wrought iron",
+      "linear feet", "200 feet", "300 feet", "quote from", "second quote"
+    ],
+    "project_size_multipliers": {
+      "small yard": 1.0,
+      "standard lot": 1.2,
+      "half acre": 1.6,
+      "acre": 2.0,
+      "multi-acre": 2.5,
+      "commercial": 2.5
+    }
+  },
+  "b2b_partner": {
+    "retailer_signals": [
+      "property management", "property manager", "hoa management", "realty",
+      "real estate", "rentals", "apartments", "homeowners association"
+    ],
+    "service_signals": [
+      "maintenance", "landscaping", "general contractor", "remodel", "repairs",
+      "handyman", "pool service", "cleaning service"
+    ],
+    "brand_signals": [
+      "fence supply", "building materials", "hardware", "lumber", "steel",
+      "supplier", "wholesale", "distributor"
+    ],
+    "partner_type_tags": {
+      "property_manager": ["property management", "hoa", "apartments", "rentals"],
+      "service_provider": ["maintenance", "landscaping", "general contractor", "handyman"],
+      "supplier": ["supply", "materials", "wholesale", "lumber", "steel"],
+      "distributor": ["distributor", "wholesale", "distribution"],
+      "association": ["association", "club", "group"]
+    }
+  },
+  "investor": {
+    "thesis_tags": [
+      "home services", "construction", "trades", "local services", "marketplace",
+      "property tech", "proptech", "field services", "smbs", "blue collar", "ai agents"
+    ],
+    "stage_tags": [
+      "seed", "series a", "series b", "growth", "venture", "angel", "private equity"
+    ],
+    "portfolio_match_keywords": [
+      "home services", "contractor", "construction", "field service", "property",
+      "trades", "local commerce", "marketplace", "ai", "automation"
+    ]
+  }
+}

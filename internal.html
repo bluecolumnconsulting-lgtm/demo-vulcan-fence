@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Internal — Lead Gen Console (team only)</title>
+<!-- INTERNAL TOOL — OttoMedic-model lead-gen console. Research/build only: nothing here sends messages to anyone. All data stays in this browser's localStorage. -->
+<style>
+:root{--accent:#e8862e;--deep:#141a20;--line:#e3e0da;--muted:#6b7681;--bg:#f7f6f3;--card:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--deep);line-height:1.55;padding:0 0 60px}
+header{background:var(--deep);color:#fff;padding:26px 22px 22px}
+header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header h1{font-size:1.3rem}
+.badge{background:var(--accent);color:#fff;font-size:.7rem;font-weight:800;border-radius:999px;padding:4px 12px;letter-spacing:.5px}
+.note{max-width:1100px;margin:14px auto 0;padding:0 22px;color:#c8d3dc;font-size:.85rem}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+.tabs{display:flex;gap:10px;margin:26px 0 20px}
+.tabs button{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.95rem}
+.tabs button.on{background:var(--deep);color:#fff;border-color:var(--deep)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px}
+.panel h2{font-size:1.05rem;margin-bottom:10px}
+.panel p.hint{color:var(--muted);font-size:.85rem;margin-bottom:14px}
+.tcard{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;background:#fff}
+.tcard .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.pill{font-size:.7rem;font-weight:800;border-radius:999px;padding:3px 10px;background:#eef2f5;color:var(--muted)}
+.pill.on{background:#e5f5ea;color:#1d7a3e}
+.pill.type{background:#fdeedd;color:#a05a12}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted);word-break:break-all}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{background:#f2f4f6;border-radius:999px;padding:3px 10px;font-size:.75rem;color:var(--muted)}
+button.act{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:.9rem}
+button.act.ghost{background:#fff;color:var(--deep);border:1.5px solid var(--deep)}
+textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:12px;font-family:inherit;font-size:.9rem;resize:vertical}
+.score-result{border-left:4px solid var(--accent);background:#fffdf8;border-radius:8px;padding:14px;margin-top:14px;display:none}
+.score-result.show{display:block}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th{text-align:left;border-bottom:2px solid var(--deep);padding:8px 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px}
+td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top}
+.route-hi{color:#b3261e;font-weight:800}
+.route-nur{color:#a05a12;font-weight:700}
+.route-arc{color:var(--muted)}
+.empty{color:var(--muted);font-size:.9rem;padding:14px 0}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.stat b{font-size:1.4rem}
+.stat span{display:block;color:var(--muted);font-size:.78rem}
+footer{max-width:1100px;margin:0 auto;padding:0 22px;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1 id="title">Internal Lead-Gen Console</h1>
+    <span class="badge">TEAM ONLY</span>
+  </div>
+  <div class="note" id="bizline"></div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button id="tab-panel" class="on" onclick="show('panel')">🛰️ Scraper Panel</button>
+    <button id="tab-crm" onclick="show('crm')">📋 Leads CRM</button>
+  </div>
+
+  <div id="view-panel">
+    <div class="kv" id="stats"></div>
+    <div class="panel">
+      <h2>Score a post (manual triage)</h2>
+      <p class="hint">Paste a forum/Reddit post or review text. Scored against the keyword + scoring configs below. Nothing is sent anywhere — save is local only.</p>
+      <textarea id="score-in" placeholder="e.g. 'Our fence got wrecked in the storm last night, gate is sagging, any idea what replacement should cost? Half acre lot...'"></textarea>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <button class="act" onclick="scorePasted()">Score post</button>
+        <button class="act ghost" onclick="rescanLocal()">Rescan local site leads</button>
+      </div>
+      <div class="score-result" id="score-out"></div>
+    </div>
+    <div class="panel">
+      <h2>Targets (config/scraper.targets.json)</h2>
+      <p class="hint">Live harvest runs on the BlueColumn worker schedule. This console shows the config, scores, and local queue — it never posts or messages anyone.</p>
+      <div id="targets"></div>
+    </div>
+    <div class="panel">
+      <h2>Pain keywords (config/scraper.keywords.json)</h2>
+      <div id="kw"></div>
+    </div>
+  </div>
+
+  <div id="view-crm" style="display:none">
+    <div class="panel">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+        <h2 style="margin:0">Lead queue — <span id="qcount">0</span></h2>
+        <span style="flex:1"></span>
+        <button class="act ghost" onclick="exportCsv()">⬇ Export CSV</button>
+        <button class="act ghost" onclick="clearQueue()">Clear queue</button>
+      </div>
+      <div id="queue"></div>
+    </div>
+    <div class="panel">
+      <h2>Raw site leads (public page form + agent bookings)</h2>
+      <p class="hint">Same localStorage keys the public site writes: <span class="mono" id="rawkey"></span></p>
+      <div id="raw"></div>
+    </div>
+  </div>
+</div>
+
+<footer>BlueColumn AI internal demo console · research/build only — no outbound messaging · all data local to this browser.</footer>
+
+<script>
+window.INTERNAL_CFG = {
+  business: "Vulcan Fence LLC",
+  seed: "demo-vulcan-fence",
+  leadKey: "vulcan_leads",
+  internalKey: "vulcan_internal_leads",
+  accent: "#e8862e",
+  deep: "#141a20",
+  title: "VulcanBot internal console"
+};
+</script>
+<script>
+(function(){
+'use strict';
+var CFG=window.INTERNAL_CFG;
+document.title=CFG.title;
+document.getElementById('title').textContent=CFG.title;
+document.getElementById('bizline').textContent=CFG.business+' · OttoMedic-model internal lead generation · configs: config/scraper.{targets,scoring,keywords}.json · local lead key: '+CFG.leadKey;
+document.documentElement.style.setProperty('--accent',CFG.accent);
+document.documentElement.style.setProperty('--deep',CFG.deep);
+document.getElementById('rawkey').textContent=CFG.leadKey;
+
+var targets=null,scoring=null,keywords=null;
+function fetchJson(url,cb){fetch(url).then(function(r){if(!r.ok)throw 0;return r.json();}).then(cb).catch(function(){cb(null);});}
+
+/* ---------- scoring ---------- */
+function contains(list,text){var t=text.toLowerCase(),hits=[];list.forEach(function(k){if(t.indexOf(k.toLowerCase())!==-1)hits.push(k);});return hits;}
+function scoreText(text,type){
+  type=type||'consumer_intent';
+  var w=scoring.weights[type]||{},k=keywords[type]||{},hi=contains(k.pain_high||[],text),med=contains(k.pain_medium||[],text),val=contains(k.signals_value||[],text);
+  var s=(w.base_score||0)+(hi.length?w.pain_high||0:0)+(med.length?w.pain_medium||0:0)+(val.length?w.signals_value||0:0)+(w.recent_post_bonus||0);
+  var route=scoring.routes.find(function(r){return s>=r.min;})||scoring.routes[scoring.routes.length-1];
+  var pain=hi[0]||med[0]||'their question';
+  var tpl=(scoring.outreach_templates[type]||{})[route.name]||'';
+  return {score:s,route:route,pain:pain,hi:hi,med:med,val:val,outreach:tpl.replace('{name}','there').replace('{pain_point}',pain).replace('{company_name}','there').replace('{partner_name}','there').replace('{thesis_match}','the space')};
+}
+function routeClass(name){return name==='priority_outreach'?'route-hi':name==='nurture'?'route-nur':'route-arc';}
+
+/* ---------- UI ---------- */
+window.show=function(tab){
+  document.getElementById('tab-panel').classList.toggle('on',tab==='panel');
+  document.getElementById('tab-crm').classList.toggle('on',tab==='crm');
+  document.getElementById('view-panel').style.display=tab==='panel'?'block':'none';
+  document.getElementById('view-crm').style.display=tab==='crm'?'block':'none';
+  if(tab==='crm')renderQueue();
+};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+
+function renderStats(){
+  var q=getQueue(),raw=getRaw(),hi=q.filter(function(l){return l.route==='priority_outreach';}).length;
+  document.getElementById('stats').innerHTML=
+    '<div class="stat"><b>'+q.length+'</b><span>queued leads</span></div>'+
+    '<div class="stat"><b>'+hi+'</b><span>priority outreach</span></div>'+
+    '<div class="stat"><b>'+raw.length+'</b><span>raw site leads</span></div>'+
+    '<div class="stat"><b>'+(targets?targets.targets.filter(function(t){return t.enabled;}).length:0)+'</b><span>active targets</span></div>';
+}
+function renderTargets(){
+  var el=document.getElementById('targets');
+  if(!targets){el.innerHTML='<div class="empty">config/scraper.targets.json not found.</div>';return;}
+  el.innerHTML=targets.targets.map(function(t){
+    var srcs=(t.subreddits||[]).map(function(s){return 'r/'+s;}).concat(t.seedUrls||[]);
+    return '<div class="tcard"><div class="row"><b>'+esc(t.id)+'</b>'+
+      '<span class="pill type">'+esc(t.lead_type)+'</span><span class="pill">'+esc(t.adapter)+'</span><span class="pill">'+esc(t.tier)+'</span>'+
+      '<span class="pill '+(t.enabled?'on':'')+'">'+(t.enabled?'enabled':'disabled')+'</span>'+
+      '<span class="pill">every '+(t.interval_minutes>=1440?(t.interval_minutes/1440)+'d':t.interval_minutes+'m')+'</span></div>'+
+      (srcs.length?'<div class="mono">'+srcs.map(esc).join(' · ')+'</div>':'')+
+      ((t.queries&&t.queries.length)?'<div class="chips">'+t.queries.map(function(q){return '<span class="chip">'+esc(q)+'</span>';}).join('')+'</div>':'')+
+      '</div>';
+  }).join('');
+}
+function renderKw(){
+  var el=document.getElementById('kw');
+  if(!keywords){el.innerHTML='<div class="empty">keywords config not found.</div>';return;}
+  var c=keywords.consumer_intent||{};
+  el.innerHTML='<p style="margin-bottom:8px"><b style="color:#b3261e">High pain:</b> '+(c.pain_high||[]).map(esc).join(' · ')+'</p>'+
+    '<p style="margin-bottom:8px"><b style="color:#a05a12">Medium pain:</b> '+(c.pain_medium||[]).map(esc).join(' · ')+'</p>'+
+    '<p><b>Value signals:</b> '+(c.signals_value||[]).map(esc).join(' · ')+'</p>';
+}
+
+window.scorePasted=function(){
+  var text=document.getElementById('score-in').value.trim();
+  var out=document.getElementById('score-out');
+  if(!text){out.className='score-result';return;}
+  var r=scoreText(text);
+  lastScore={text:text,score:r.score,route:r.route.name,pain:r.pain};
+  out.innerHTML='<b>Score '+r.score+'</b> · <span class="'+routeClass(r.route.name)+'">'+esc(r.route.name)+'</span> ('+esc(r.route.action)+')'+
+    '<br><b>Pain:</b> '+esc(r.pain)+
+    (r.hi.length?'<br><b>High-pain hits:</b> '+esc(r.hi.join(', ')):'')+
+    (r.med.length?'<br><b>Medium-pain hits:</b> '+esc(r.med.join(', ')):'')+
+    (r.val.length?'<br><b>Value signals:</b> '+esc(r.val.join(', ')):'')+
+    '<div style="margin-top:10px"><b>Suggested outreach (template — nothing is sent):</b><br>'+esc(r.outreach)+'</div>'+
+    '<div style="margin-top:12px"><button class="act" onclick="saveManual()">Save to lead queue (local)</button></div>';
+  out.className='score-result show';
+};
+var lastScore=null;
+window.saveManual=function(){
+  if(!lastScore)return;
+  var o=JSON.parse(JSON.stringify(lastScore));
+  o.source='manual paste';o.at=new Date().toISOString();o.type='consumer_intent';
+  var q=getQueue();q.unshift(o);localStorage.setItem(CFG.internalKey,JSON.stringify(q));
+  renderStats();renderQueue();
+};
+
+/* ---------- leads ---------- */
+function getRaw(){try{return JSON.parse(localStorage.getItem(CFG.leadKey)||'[]');}catch(e){return [];}}
+function getQueue(){try{return JSON.parse(localStorage.getItem(CFG.internalKey)||'[]');}catch(e){return [];}}
+window.rescanLocal=function(){
+  var raw=getRaw(),q=getQueue(),added=0;
+  raw.forEach(function(lead){
+    var text=[lead.name,lead.type,lead.notes,lead.len,lead.riders].filter(Boolean).join(' ')||'site lead';
+    var r=scoreText(text);
+    var exists=q.some(function(x){return x.text===text&&x.source==='site lead';});
+    if(!exists){q.push({text:text,score:r.score,route:r.route.name,pain:r.pain,source:'site lead',type:'consumer_intent',name:lead.name||'',phone:lead.phone||'',at:lead.at||new Date().toISOString()});added++;}
+  });
+  localStorage.setItem(CFG.internalKey,JSON.stringify(q));
+  renderStats();renderQueue();
+  alert('Rescan complete: '+added+' new lead(s) added to the local queue.');
+};
+function renderQueue(){
+  var q=getQueue(),el=document.getElementById('queue');
+  document.getElementById('qcount').textContent=q.length;
+  if(!q.length){el.innerHTML='<div class="empty">Queue is empty. Score a post or rescan local site leads.</div>';}
+  else{
+    q.sort(function(a,b){return (b.score||0)-(a.score||0);});
+    el.innerHTML='<table><tr><th>Score</th><th>Route</th><th>Pain</th><th>Lead</th><th>Source</th><th>When</th></tr>'+
+      q.map(function(l){return '<tr><td><b>'+(l.score||0)+'</b></td><td class="'+routeClass(l.route)+'">'+esc(l.route)+'</td><td>'+esc(l.pain)+'</td><td>'+esc((l.name?l.name+' · ':'')+(l.text||'').slice(0,110))+(l.phone?'<br><span class="mono">'+esc(l.phone)+'</span>':'')+'</td><td>'+esc(l.source||'')+'</td><td class="mono">'+esc((l.at||'').slice(0,16).replace('T',' '))+'</td></tr>';}).join('')+'</table>';
+  }
+  var raw=getRaw(),rw=document.getElementById('raw');
+  rw.innerHTML=raw.length
+    ? '<table><tr><th>Name</th><th>Phone</th><th>Interest</th><th>When</th></tr>'+raw.map(function(l){return '<tr><td>'+esc(l.name||'')+'</td><td class="mono">'+esc(l.phone||'')+'</td><td>'+esc([l.type,l.len,l.riders,l.notes,l.addr].filter(Boolean).join(' · '))+'</td><td class="mono">'+esc((l.at||'').slice(0,16).replace('T',' '))+'</td></tr>';}).join('')+'</table>'
+    : '<div class="empty">No site leads yet (form submissions and agent bookings from the public page land here).</div>';
+}
+window.clearQueue=function(){if(confirm('Clear the local lead queue?')){localStorage.removeItem(CFG.internalKey);renderStats();renderQueue();}};
+window.exportCsv=function(){
+  var q=getQueue();
+  if(!q.length){alert('Queue is empty.');return;}
+  var rows=[['score','route','pain','name','phone','text','source','at']].concat(q.map(function(l){return [l.score,l.route,l.pain,l.name||'',l.phone||'',(l.text||'').replace(/\s+/g,' '),l.source||'',l.at||''];}));
+  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=CFG.seed+'-lead-queue.csv';a.click();
+};
+
+/* ---------- boot ---------- */
+fetchJson('config/scraper.targets.json',function(d){targets=d;renderTargets();renderStats();});
+fetchJson('config/scraper.scoring.json',function(d){scoring=d;});
+fetchJson('config/scraper.keywords.json',function(d){keywords=d;renderKw();});
+renderStats();
+})();
+</script>
+</body>
+</html>

@@ -103,6 +103,23 @@ footer a{color:#c9d4de;text-decoration:none}
 .bot-input input{border:none;border-radius:0;flex:1}
 .bot-input button{background:var(--amber);color:#fff;border:none;padding:0 18px;font-weight:700;cursor:pointer}
 
+/* Marina agent additions (live brain · dynamic voice · video avatar) — contained to the bot panel, page layout unchanged */
+.bot-ctl{background:none;border:none;cursor:pointer;font-size:1rem;color:#fff;padding:2px 4px;margin-left:4px;opacity:.85}
+.bot-ctl:hover{opacity:1}
+.bot-ctl.on{color:var(--amber);opacity:1}
+#bot-video-wrap{display:none;position:relative;background:#000}
+#bot-panel.video-mode #bot-video-wrap{display:block}
+#bot-video-el{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+#bot-video-live{position:absolute;top:8px;left:8px;background:rgba(220,40,40,.9);color:#fff;font-size:.62rem;font-weight:800;padding:2px 8px;border-radius:999px;display:flex;align-items:center;gap:4px;letter-spacing:.5px}
+#bot-video-live i{width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block;animation:vblink 1.2s infinite}
+@keyframes vblink{50%{opacity:.15}}
+#bot-avatar{display:inline-block;transform-origin:50% 88%}
+.bc-typing{display:flex;gap:3px;align-items:center}
+.bc-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block;animation:bdot 1s infinite}
+.bc-typing span:nth-child(2){animation-delay:.15s}
+.bc-typing span:nth-child(3){animation-delay:.3s}
+@keyframes bdot{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
 @media(max-width:700px){
   nav.main ul{display:none}
   .topbar .wrap{flex-direction:column;gap:4px;font-size:.78rem;text-align:center}
@@ -275,13 +292,14 @@ footer a{color:#c9d4de;text-decoration:none}
 </footer>
 
 <!-- VulcanBot -->
-<button id="bot-fab" onclick="toggleBot()">🔥 Ask VulcanBot</button>
+<button id="bot-fab">🔥 Ask VulcanBot</button>
 <div id="bot-panel" role="dialog" aria-label="VulcanBot chat">
-  <div class="bot-head"><div class="bot-avatar">🔥</div><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div></div>
+  <div class="bot-head"><div class="bot-avatar" id="bot-avatar">🔥</div><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div><button id="bot-mute" class="bot-ctl" style="margin-left:auto" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button></div>
+  <div id="bot-video-wrap" aria-hidden="true"><span id="bot-video-live"><i></i>LIVE</span><video id="bot-video-el" autoplay playsinline muted></video><audio id="bot-simli-audio" autoplay></audio></div>
   <div id="bot-log"></div>
   <div class="bot-input">
     <input id="bot-in" placeholder="Ask about pricing, services…" aria-label="Message VulcanBot">
-    <button onclick="botSend()">Send</button>
+    <button id="bot-send">Send</button>
   </div>
 </div>
 
@@ -295,35 +313,37 @@ document.getElementById('lead-form').addEventListener('submit',function(e){
   document.getElementById('form-ok').style.display='block';e.target.reset();
 });
 const fn=document.getElementById('f-name'),fp=document.getElementById('f-phone'),fa=document.getElementById('f-addr'),ft=document.getElementById('f-type'),fn2=document.getElementById('f-notes');
-
-/* VulcanBot — scripted demo brain (swap in live AI backend at launch) */
-const RULES=[
-  {k:['price','cost','how much','quote','estimate'],r:"Every project is priced on linear footage, height, and material. I can't give exact numbers without the property details — but a free estimate takes about a minute. Want to fill the form, or should I take your name and number?"},
-  {k:['iron','weld','metal','ornamental'],r:"Iron and welding is our specialty — second-generation welders. Ornamental iron, security bars, custom gates, all fabricated to your specs. Tell me roughly what you have in mind?"},
-  {k:['chain link'],r:"We do residential and commercial chain link — new installs, repairs, extensions, and gates. How many linear feet, roughly?"},
-  {k:['block','masonry','wall'],r:"Block walls are one of our core trades — privacy walls, decorative caps, repairs, and rebuilds. Height and footage matter most for pricing. I can set up a free estimate."},
-  {k:['security','razor','barbed','commercial'],r:"Security fencing is a big part of our commercial work — perimeter systems, barbed tape, razor wire. Licensed & bonded, ROC 339036. What kind of property?"},
-  {k:['privacy'],r:"Privacy fencing — solid panels, screen walls, even noise-reducing builds. A free estimate gets you exact options and numbers."},
-  {k:['gate'],r:"Gates, yes — manual and custom, walk gates to drive gates, all welded in-house. Part of the free estimate."},
-  {k:['hours','open','when'],r:"We respond to requests fast — usually same day. Drop your details in the estimate form or leave them here and Vulcan Fence will call you back."},
-  {k:['license','roc','insured','bonded'],r:"Fully licensed and bonded — Arizona ROC 339036. Second-generation family trade with 25+ years of experience."},
-  {k:['phone','call','talk','human'],r:"You can reach Vulcan Fence directly at 602.715.2510. Or leave your number here and they'll call you."},
-  {k:['hello','hi','hey','yo'],r:"Hey — VulcanBot here. I can answer questions about iron work, chain link, block walls, security fencing, or help you get a free estimate. What do you need?"},
-  {k:['thank','thanks'],r:"Anytime. If you want that free estimate, the form takes a minute — or call 602.715.2510."}
-];
-const FALLBACK="Good question — I can help with services, pricing approach, and setting up your free estimate. You can also call Vulcan Fence directly at 602.715.2510.";
-const log=document.getElementById('bot-log'),botIn=document.getElementById('bot-in');
-function toggleBot(){document.getElementById('bot-panel').classList.toggle('open');if(log.children.length===0)botSay("Hey — VulcanBot here. Ask me about our fencing services or get a free estimate started. 🔥");}
-function addMsg(t,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;}
-function botSay(t){addMsg(t,'bot');}
-function botSend(txt){
-  txt=(txt||botIn.value).trim();if(!txt)return;
-  addMsg(txt,'user');botIn.value='';
-  const low=txt.toLowerCase();
-  const hit=RULES.find(r=>r.k.some(k=>low.includes(k)));
-  setTimeout(()=>botSay(hit?hit.r:FALLBACK),420);
-}
-botIn.addEventListener('keydown',e=>{if(e.key==='Enter')botSend();});
 </script>
+
+<script>
+/* VulcanBot — Marina-grade agent config: live BlueColumn brain, dynamic
+   ElevenLabs voice (Adam), Simli person avatar, one-voice guard.
+   Canned intents below are the OFFLINE FALLBACK only — the live brain wins. */
+window.BOT_CFG={
+  name:'VulcanBot',
+  business:'Vulcan Fence LLC',
+  brainPrefix:'Vulcan Fence LLC customer question: ',
+  faceId:'174c812d-94f0-4b28-a44b-9a1f693079fd',
+  voiceId:'pNInz6obpgDQGcFmaJgB',
+  greeting:"Hey — VulcanBot here. I answer live, straight from our playbook: iron, chain link, block walls, security fencing, estimates. Ask me anything, tap 🎤 to talk hands-free, or 🎥 to see me on video.",
+  suggestions:['Are you licensed?','What do you build?','How do estimates work?'],
+  placeholder:'Ask about pricing, services…',
+  intents:[
+    {k:['price','cost','how much','quote','estimate'],t:"Every project is priced on linear footage, height, and material. I can't give exact numbers without the property details — but a free estimate takes about a minute. Want to fill the form, or should I take your name and number?"},
+    {k:['iron','weld','metal','ornamental'],t:"Iron and welding is our specialty — second-generation welders. Ornamental iron, security bars, custom gates, all fabricated to your specs."},
+    {k:['chain link'],t:"We do residential and commercial chain link — new installs, repairs, extensions, and gates."},
+    {k:['block','masonry','wall'],t:"Block walls are one of our core trades — privacy walls, decorative caps, repairs, and rebuilds. Height and footage matter most for pricing."},
+    {k:['security','razor','barbed'],t:"Security fencing is a big part of our commercial work — perimeter systems, barbed tape, razor wire. Licensed & bonded, ROC 339036."},
+    {k:['privacy'],t:"Privacy fencing — solid panels, screen walls, even noise-reducing builds. A free estimate gets you exact options and numbers."},
+    {k:['gate'],t:"Gates, yes — manual and custom, walk gates to drive gates, all welded in-house. Part of the free estimate."},
+    {k:['license','roc','insured','bonded'],t:"Fully licensed and bonded — Arizona ROC 339036. Second-generation family trade with 25+ years of experience."},
+    {k:['phone','call','human'],t:"You can reach Vulcan Fence directly at 602.715.2510. Or leave your number here and they'll call you."},
+    {k:['hello','hi','hey','yo'],t:"Hey — VulcanBot here. Ask me about iron work, chain link, block walls, security fencing, or getting a free estimate started."}
+  ],
+  fallback:"Good question — I can help with services, pricing approach, and setting up your free estimate. You can also call Vulcan Fence directly at 602.715.2510."
+};
+</script>
+<script src="vendor/simli-client.js?v=20260910a"></script>
+<script src="marina-agent.js?v=20260910a"></script>
 </body>
 </html>
