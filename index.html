@@ -348,6 +348,67 @@ window.BOT_CFG={
   ],
   fallback:"Good question — I can help with services, pricing approach, and setting up your free estimate. You can also call Vulcan Fence directly at 602.715.2510."
 };
+
+/* Stage-3 lead flow (MagicBlocks playbook): name → problem statement →
+   budget/timeline → phone → hand-off with context. Strong booking intents
+   enter the guided flow; mid-flow questions bail to the live brain. */
+var leadFlow={step:0,data:{}};
+var LEAD_TRIGGERS=['estimate','quote','call me','call back','get started','schedule','walk the property','talk to someone','book'];
+window.BOT_CFG.pre=function(txt){
+  var t=(txt||'').toLowerCase();
+  if(leadFlow.step===0){
+    var hit=LEAD_TRIGGERS.some(function(k){return t.indexOf(k)>=0;});
+    if(!hit)return null;
+    leadFlow.step=1;
+    return {t:"Happy to set that up — free estimate, no obligation. What's your name?"};
+  }
+  if(t.indexOf('?')>=0)return null; /* mid-flow question → live brain */
+  if(leadFlow.step===1){
+    leadFlow.data.name=txt.trim();leadFlow.step=2;
+    return {t:"Thanks, "+leadFlow.data.name+". What do you need built or repaired? A sentence on the property and the problem is enough."};
+  }
+  if(leadFlow.step===2){
+    leadFlow.data.problem=txt.trim();leadFlow.step=3;
+    return {t:"Got it. And the timeline — this week, this month, or just pricing it out?"};
+  }
+  if(leadFlow.step===3){
+    leadFlow.data.timeline=txt.trim();leadFlow.step=4;
+    return {t:"Last thing: best number for the callback?"};
+  }
+  if(leadFlow.step===4){
+    leadFlow.data.phone=txt.trim();leadFlow.step=0;
+    try{
+      var leads=JSON.parse(localStorage.getItem('vulcan_leads')||'[]');
+      leads.push({name:leadFlow.data.name,notes:leadFlow.data.problem,timeline:leadFlow.data.timeline,phone:leadFlow.data.phone,source:'chat',at:new Date().toISOString()});
+      localStorage.setItem('vulcan_leads',JSON.stringify(leads));
+    }catch(e){}
+    var s=leadFlow.data;
+    return {t:"You're in, "+s.name+". Logged: "+s.problem+" ("+s.timeline+"). Vulcan Fence will call "+s.phone+" today. Anything else — materials, height, gate options?"};
+  }
+  return null;
+};
+</script>
+<script>
+/* Stage 2 — intent variants (MagicBlocks playbook): visit count drives the
+   hero CTA angle. Visit 1 = credibility, 2–3 = ROI/testimonial, 4+ = urgency.
+   v1 uses localStorage; production swaps to UTM/GA4 tagging per the spec. */
+(function(){
+  var n=1;try{n=(+localStorage.getItem('vf_visits')||0)+1;localStorage.setItem('vf_visits',n);}catch(e){}
+  var cta=document.querySelector('.hero-ctas a.cta');
+  var note=document.createElement('p');
+  note.style.cssText='margin-top:12px;font-size:.85rem;color:var(--muted)';
+  if(n>=4){
+    if(cta)cta.textContent='Talk to Mark — Same-Day Callback';
+    note.textContent='New projects this month are booking up — free estimates still go out same day.';
+  }else if(n>=2){
+    if(cta)cta.textContent='Get My Free Estimate';
+    note.textContent='25+ years · Licensed & bonded ROC 339036 · Second-generation craftsmen';
+  }else{
+    note.textContent='Second-generation fence and welding craftsmen — see the work below.';
+  }
+  var hc=document.querySelector('.hero-ctas');
+  if(hc&&hc.parentNode)hc.parentNode.insertBefore(note,hc.nextSibling);
+})();
 </script>
 <script src="vendor/simli-client.js?v=20260910a"></script>
 <script src="marina-agent.js?v=20260911a"></script>
