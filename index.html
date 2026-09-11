@@ -89,12 +89,12 @@ footer a{color:#c9d4de;text-decoration:none}
 .demo-note{background:#fff6e8;border:1px solid #f0d9b0;color:#7a5a1e;font-size:.8rem;text-align:center;padding:8px}
 
 /* chat bot */
-#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:6px 20px 6px 6px;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28);display:inline-flex;align-items:center}
+#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:7px 24px 7px 7px;font-weight:800;font-size:1.1rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28);display:inline-flex;align-items:center}
 #bot-panel{position:fixed;bottom:80px;right:22px;width:340px;max-width:calc(100vw - 32px);background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:101;display:none;flex-direction:column;overflow:hidden}
 #bot-panel.open{display:flex}
 .bot-head{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
 .bot-avatar{width:44px;height:44px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;object-fit:cover;object-position:center 20%}
-.bot-fab-face{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:12px;border:3px solid rgba(255,255,255,.85);box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.bot-fab-face{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:12px;border:3px solid rgba(255,255,255,.85);box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .bot-head small{display:block;opacity:.75;font-weight:400}
 #bot-log{padding:14px;height:300px;overflow-y:auto;background:#f4f5f6;display:flex;flex-direction:column;gap:8px}
 .msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.9rem}
@@ -126,7 +126,7 @@ footer a{color:#c9d4de;text-decoration:none}
   .topbar .wrap{flex-direction:column;gap:4px;font-size:.78rem;text-align:center}
   .hero-ctas a.cta{flex:1;min-width:140px;text-align:center}
   #bot-fab{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:5px 16px 5px 5px;font-size:.92rem}
-  .bot-fab-face{width:58px;height:58px;margin-right:10px}
+  .bot-fab-face{width:68px;height:68px;margin-right:10px}
   #bot-panel{bottom:calc(70px + env(safe-area-inset-bottom));max-height:72vh}
   #bot-log{height:min(280px,48vh)}
   .creds span{display:inline-block;margin:5px 12px}
@@ -240,7 +240,7 @@ footer a{color:#c9d4de;text-decoration:none}
     <h2 class="sec">How It Works</h2>
     <p class="sub">Straightforward, like a handshake should be.</p>
     <div class="grid3">
-      <div class="step"><div class="n">1</div><div><h3>Tell Us What You Need</h3><p style="color:var(--muted);font-size:.93rem">Call, chat with VulcanBot, or fill the form. We walk the property and answer the right questions.</p></div></div>
+      <div class="step"><div class="n">1</div><div><h3>Tell Us What You Need</h3><p style="color:var(--muted);font-size:.93rem">Call, chat with Mark, or fill the form. We walk the property and answer the right questions.</p></div></div>
       <div class="step"><div class="n">2</div><div><h3>Clear Written Estimate</h3><p style="color:var(--muted);font-size:.93rem">Scope, materials, timeline. No mystery fees, no pressure.</p></div></div>
       <div class="step"><div class="n">3</div><div><h3>Built By Our Crew</h3><p style="color:var(--muted);font-size:.93rem">Our welders and fencers do the work. Site left clean. Built to last.</p></div></div>
     </div>
@@ -252,7 +252,7 @@ footer a{color:#c9d4de;text-decoration:none}
     <div class="grid2">
       <div>
         <h2 class="sec">Ready To Build?</h2>
-        <p class="sub">Tell us about your project and we'll get back to you fast. Prefer to talk? Call <b><a href="tel:6027152510" style="color:var(--amber-dk)">602.715.2510</a></b> — or ask VulcanBot right now.</p>
+        <p class="sub">Tell us about your project and we'll get back to you fast. Prefer to talk? Call <b><a href="tel:6027152510" style="color:var(--amber-dk)">602.715.2510</a></b> — or ask Mark right now.</p>
         <div class="card" style="margin-top:18px">
           <h3>📞 Contact</h3>
           <p><b>Phone:</b> 602.715.2510<br><b>Location:</b> Phoenix, Arizona<br><b>Service Area:</b> Phoenix Metro &amp; surrounding<br><b>License:</b> ROC 339036 — Licensed &amp; Bonded</p>
@@ -293,14 +293,14 @@ footer a{color:#c9d4de;text-decoration:none}
   </div>
 </footer>
 
-<!-- VulcanBot -->
-<button id="bot-fab"><img class="bot-fab-face" src="bot-face.png?v=20260910b" alt="VulcanBot">Ask VulcanBot</button>
-<div id="bot-panel" role="dialog" aria-label="VulcanBot chat">
-  <div class="bot-head"><img class="bot-avatar" id="bot-avatar" src="bot-face.png?v=20260910b" alt="VulcanBot"><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div><button id="bot-mute" class="bot-ctl" style="margin-left:auto" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button></div>
+<!-- Mark -->
+<button id="bot-fab"><img class="bot-fab-face" src="bot-face.png?v=20260911a" alt="Mark">Ask Mark</button>
+<div id="bot-panel" role="dialog" aria-label="Chat with Mark">
+  <div class="bot-head"><img class="bot-avatar" id="bot-avatar" src="bot-face.png?v=20260911a" alt="Mark"><div><b>Mark</b><small>Instant answers · 24/7</small></div><button id="bot-mute" class="bot-ctl" style="margin-left:auto" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button></div>
   <div id="bot-video-wrap" aria-hidden="true"><span id="bot-video-live"><i></i>LIVE</span><video id="bot-video-el" autoplay playsinline muted></video><audio id="bot-simli-audio" autoplay></audio></div>
   <div id="bot-log"></div>
   <div class="bot-input">
-    <input id="bot-in" placeholder="Ask about pricing, services…" aria-label="Message VulcanBot">
+    <input id="bot-in" placeholder="Ask about pricing, services…" aria-label="Message Mark">
     <button id="bot-send">Send</button>
   </div>
 </div>
@@ -322,12 +322,12 @@ const fn=document.getElementById('f-name'),fp=document.getElementById('f-phone')
    ElevenLabs voice (Adam), Simli person avatar, one-voice guard.
    Canned intents below are the OFFLINE FALLBACK only — the live brain wins. */
 window.BOT_CFG={
-  name:'VulcanBot',
+  name:'Mark',
   business:'Vulcan Fence LLC',
   brainPrefix:'Vulcan Fence LLC customer question: ',
   faceId:'dd10cb5a-d31d-4f12-b69f-6db3383c006e',
   voiceId:'pNInz6obpgDQGcFmaJgB',
-  greeting:"Hey — VulcanBot here. I answer live, straight from our playbook: iron, chain link, block walls, security fencing, estimates. Ask me anything, tap 🎤 to talk hands-free, or 🎥 to see me on video.",
+  greeting:"Hey — Mark here. I answer live, straight from our playbook: iron, chain link, block walls, security fencing, estimates. Ask me anything, tap 🎤 to talk hands-free, or 🎥 to see me on video.",
   suggestions:['Are you licensed?','What do you build?','How do estimates work?'],
   placeholder:'Ask about pricing, services…',
   intents:[
@@ -340,7 +340,7 @@ window.BOT_CFG={
     {k:['gate'],t:"Gates, yes — manual and custom, walk gates to drive gates, all welded in-house. Part of the free estimate."},
     {k:['license','roc','insured','bonded'],t:"Fully licensed and bonded — Arizona ROC 339036. Second-generation family trade with 25+ years of experience."},
     {k:['phone','call','human'],t:"You can reach Vulcan Fence directly at 602.715.2510. Or leave your number here and they'll call you."},
-    {k:['hello','hi','hey','yo'],t:"Hey — VulcanBot here. Ask me about iron work, chain link, block walls, security fencing, or getting a free estimate started."}
+    {k:['hello','hi','hey','yo'],t:"Hey — Mark here. Ask me about iron work, chain link, block walls, security fencing, or getting a free estimate started."}
   ],
   fallback:"Good question — I can help with services, pricing approach, and setting up your free estimate. You can also call Vulcan Fence directly at 602.715.2510."
 };
