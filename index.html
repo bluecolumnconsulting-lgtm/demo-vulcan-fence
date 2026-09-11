@@ -94,6 +94,7 @@ footer a{color:#c9d4de;text-decoration:none}
 #bot-panel.open{display:flex}
 .bot-head{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
 .bot-avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800}
+.bot-fab-face{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:9px;border:2px solid rgba(255,255,255,.75);box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .bot-head small{display:block;opacity:.75;font-weight:400}
 #bot-log{padding:14px;height:300px;overflow-y:auto;background:#f4f5f6;display:flex;flex-direction:column;gap:8px}
 .msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.9rem}
@@ -292,9 +293,9 @@ footer a{color:#c9d4de;text-decoration:none}
 </footer>
 
 <!-- VulcanBot -->
-<button id="bot-fab">🔥 Ask VulcanBot</button>
+<button id="bot-fab"><img class="bot-fab-face" src="bot-face.png?v=20260910b" alt="VulcanBot">Ask VulcanBot</button>
 <div id="bot-panel" role="dialog" aria-label="VulcanBot chat">
-  <div class="bot-head"><div class="bot-avatar" id="bot-avatar">🔥</div><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div><button id="bot-mute" class="bot-ctl" style="margin-left:auto" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button></div>
+  <div class="bot-head"><img class="bot-avatar" id="bot-avatar" src="bot-face.png?v=20260910b" alt="VulcanBot"><div><b>VulcanBot</b><small>Instant answers · 24/7</small></div><button id="bot-mute" class="bot-ctl" style="margin-left:auto" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button></div>
   <div id="bot-video-wrap" aria-hidden="true"><span id="bot-video-live"><i></i>LIVE</span><video id="bot-video-el" autoplay playsinline muted></video><audio id="bot-simli-audio" autoplay></audio></div>
   <div id="bot-log"></div>
   <div class="bot-input">
