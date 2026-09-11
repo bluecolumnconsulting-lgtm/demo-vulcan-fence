@@ -149,8 +149,16 @@
       if (!a || /not in available context/i.test(a) || a.length < 8) {
         return { t: cannedText, canned: true };
       }
-      return { t: a, canned: false };
+      return { t: shortReply(a), canned: false };
     }).catch(function () { return { t: cannedText, canned: true }; });
+  }
+
+  /* Conversational brevity: cap spoken/displayed replies to the first two
+     sentences — interactive back-and-forth, not a long spiel. */
+  function shortReply(a) {
+    var m = String(a).match(/[^.!?]+[.!?]+["')\]]*\s*/g);
+    if (!m || m.length <= 2) { return String(a).trim(); }
+    return m.slice(0, 2).join('').trim();
   }
 
   /* ============================================================
@@ -213,7 +221,17 @@
       .catch(function () { botFinished(); /* v14: never overlap the avatar voice */ });
   }
 
+  /* ============================================================
+     BARGE-IN — client talks, Mark stops and listens (voice + video)
+     ============================================================ */
+  var speechStartTs = 0;
+  function bargeIn() {
+    if (!speaking) { return; }
+    cancelSpeech(); /* newest voice wins: Mark stops mid-sentence */
+  }
+
   function playReply(r) {
+    speechStartTs = Date.now();
     if (muted || videoStarting) { setTimeout(botFinished, 300); return; }
     if (videoMode.on && simliReady()) { speakTextThroughSimli(r.t); return; }
     ttsFetch(r.t).then(function (blob) {
@@ -304,7 +322,7 @@
       panel.classList.add('video-mode');
       videoBtn.classList.add('on');
       videoBtn.textContent = '🎥';
-      botSay('Video avatar is live now — watch me talk. Tap the mic and just talk to me.');
+      botSay('Video avatar is live. Tap the mic and just talk — if you start speaking, I stop and listen.');
       setModeUI();
     } catch (e) {
       videoStarting = false;
@@ -320,12 +338,20 @@
   function buildRecognizer() {
     var r = new SR();
     r.lang = 'en-US';
-    r.continuous = false;
-    r.interimResults = false;
+    r.continuous = true;   /* stay live during Mark's replies → barge-in */
+    r.interimResults = true;
     r.maxAlternatives = 1;
     r.onresult = function (ev) {
-      var t = ev.results[0][0].transcript.trim();
-      if (t) { send(t); }
+      var res = ev.results[ev.results.length - 1];
+      var t = (res && res[0] && res[0].transcript ? res[0].transcript : '').trim();
+      if (res.isFinal) {
+        if (t) { bargeIn(); send(t); }
+        return;
+      }
+      /* interim: 2+ real words past a 700ms echo-grace stops Mark mid-speech */
+      if (speaking && t.split(/\s+/).length >= 2 && Date.now() - speechStartTs > 700) {
+        bargeIn();
+      }
     };
     r.onerror = function (ev) {
       if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
@@ -335,7 +361,7 @@
     };
     r.onend = function () {
       setMicUI(micWanted);
-      if (micWanted && !speaking) {
+      if (micWanted) { /* keep listening during speech: interruption = barge-in */
         setTimeout(function () { try { recog.start(); } catch (e) {} }, 300);
       }
     };
