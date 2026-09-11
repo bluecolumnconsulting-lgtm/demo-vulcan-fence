@@ -396,7 +396,7 @@
     function deliver(r) {
       if (t.parentNode) { t.parentNode.removeChild(t); }
       botSay(r.t);
-      if (r.opts && r.opts.length) { opts(r.opts); }
+      /* sparse premium look: suggestion chips disabled */ /* if (r.opts && r.opts.length) { opts(r.opts); } */
       speaking = true;
       playReply(r);
     }
@@ -418,7 +418,7 @@
     if (!started) {
       started = true;
       botSay(CFG.greeting);
-      if (CFG.suggestions && CFG.suggestions.length) { opts(CFG.suggestions); }
+      /* sparse premium look: suggestion chips disabled */ /* if (CFG.suggestions && CFG.suggestions.length) { opts(CFG.suggestions); } */
     }
     setModeUI();
     input.focus();
