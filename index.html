@@ -89,12 +89,12 @@ footer a{color:#c9d4de;text-decoration:none}
 .demo-note{background:#fff6e8;border:1px solid #f0d9b0;color:#7a5a1e;font-size:.8rem;text-align:center;padding:8px}
 
 /* chat bot */
-#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:13px 20px;font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28)}
+#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:6px 20px 6px 6px;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28);display:inline-flex;align-items:center}
 #bot-panel{position:fixed;bottom:80px;right:22px;width:340px;max-width:calc(100vw - 32px);background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:101;display:none;flex-direction:column;overflow:hidden}
 #bot-panel.open{display:flex}
 .bot-head{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
-.bot-avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800}
-.bot-fab-face{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:9px;border:2px solid rgba(255,255,255,.75);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.bot-avatar{width:44px;height:44px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;object-fit:cover;object-position:center 20%}
+.bot-fab-face{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:12px;border:3px solid rgba(255,255,255,.85);box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .bot-head small{display:block;opacity:.75;font-weight:400}
 #bot-log{padding:14px;height:300px;overflow-y:auto;background:#f4f5f6;display:flex;flex-direction:column;gap:8px}
 .msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.9rem}
@@ -125,7 +125,8 @@ footer a{color:#c9d4de;text-decoration:none}
   nav.main ul{display:none}
   .topbar .wrap{flex-direction:column;gap:4px;font-size:.78rem;text-align:center}
   .hero-ctas a.cta{flex:1;min-width:140px;text-align:center}
-  #bot-fab{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:10px 14px;font-size:.88rem}
+  #bot-fab{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:5px 16px 5px 5px;font-size:.92rem}
+  .bot-fab-face{width:58px;height:58px;margin-right:10px}
   #bot-panel{bottom:calc(70px + env(safe-area-inset-bottom));max-height:72vh}
   #bot-log{height:min(280px,48vh)}
   .creds span{display:inline-block;margin:5px 12px}
