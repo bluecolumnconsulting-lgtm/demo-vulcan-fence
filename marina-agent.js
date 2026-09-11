@@ -76,12 +76,13 @@
   }
 
   /* -- Mouth animation (squish on the emoji avatar) ------------ */
+  /* Disabled per high-end chatbot spec: minimal motion, no mouth movement */
   function stopMouth() {
     if (mouthRAF) { cancelAnimationFrame(mouthRAF); mouthRAF = null; }
     if (avatarEl) { avatarEl.style.transform = ''; avatarEl.classList.remove('talking'); }
   }
   function startMouth() {
-    if (!currentAudio || !avatarEl) { return; }
+    return; /* premium look: no idle/animated mouth movement */
     try {
       audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
       if (!analyser) {
