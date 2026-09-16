@@ -6,306 +6,531 @@
 <title>Vulcan Fence LLC — Iron, Chain Link & Custom Fencing | Phoenix, AZ</title>
 <meta name="description" content="Second-generation fencers & welders. Iron, chain link, masonry, security & privacy fencing built to last. ROC 339036. Free estimates — Phoenix Metro.">
 <!-- DEMO SITE — built by BlueColumn AI as a sales demo for Vulcan Fence LLC. Not affiliated with vulcanfenceaz.com. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#141a20; --steel:#243039; --slate:#3b4c59; --amber:#e8862e; --amber-dk:#c96d1a;
-  --bg:#f7f6f3; --card:#ffffff; --line:#e3e0da; --muted:#6b7681;
-  --hero1:#1a232b; --hero2:#2c3b47;
+  --ink:#15181B;
+  --bone:#F4F1EA;
+  --steel:#5C6670;
+  --orange:#E8622C;
+  --orange-dark:#c84f1f;
+  --line:rgba(92,102,112,.42);
+  --line-strong:rgba(244,241,234,.28);
+  --body:#Public Sans,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display:"Big Shoulders Display",Impact,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",monospace;
+  --speed:180ms;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-h2.sec{font-size:2rem;margin-bottom:.4em}
-p.sub{color:var(--muted);margin-bottom:2.2rem;max-width:640px}
+body{font-family:var(--body);background:var(--bone);color:var(--ink);line-height:1.55}
+a,button,input,select,textarea{transition:color var(--speed) ease,border-color var(--speed) ease,background-color var(--speed) ease}
+a{color:inherit}
+button{font:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none !important;transition:none !important}}
 
-/* top bar */
-.topbar{background:var(--steel);color:#dbe4ec;font-size:.85rem;padding:8px 0}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.topbar b{color:#fff}
-.topbar a{color:var(--amber);font-weight:700;text-decoration:none}
-nav.main{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-nav.main .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
-.logo{font-weight:800;font-size:1.25rem;letter-spacing:.5px}
-.logo span{color:var(--amber)}
-nav.main ul{display:flex;gap:24px;list-style:none}
-nav.main a.navlink{text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
-.cta{display:inline-block;background:var(--amber);color:#fff;padding:10px 22px;border-radius:6px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-size:.95rem}
-.cta:hover{background:var(--amber-dk)}
-.cta.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.site{position:relative}
+.site::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0,transparent calc((100vw - 48px)/12 - 1px),rgba(92,102,112,.1) calc((100vw - 48px)/12 - 1px),rgba(92,102,112,.1) calc((100vw - 48px)/12));opacity:.45;mix-blend-mode:multiply}
+.wrap{width:min(1180px,calc(100% - 48px));margin:0 auto;position:relative}
+.rulebar,.demo-note,.section,.creds,footer{border-top:1px solid var(--line)}
+.rulebar{background:var(--ink);color:var(--bone);border-bottom:1px solid var(--line-strong)}
+.rulebar .wrap{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;min-height:48px;padding:10px 0}
+.rulebar-meta{font:600 .78rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,234,.82)}
+.rulebar-meta span+span::before{content:"/";margin:0 10px;color:rgba(244,241,234,.35)}
+.rulebar a{color:var(--bone);text-decoration:none}
 
-/* hero */
-header.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:76px 0 84px;position:relative;overflow:hidden}
-header.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 118px,rgba(255,255,255,.035) 118px 120px)}
-header.hero .wrap{position:relative;z-index:1}
-.hero-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 14px;font-size:.8rem;font-weight:600}
-header.hero h1{font-size:clamp(1.9rem,5.2vw,2.9rem);line-height:1.12;font-weight:800;max-width:760px}
-header.hero h1 em{color:var(--amber);font-style:normal}
-header.hero p.lead{margin:18px 0 30px;font-size:clamp(.98rem,2.2vw,1.15rem);color:#c8d3dc;max-width:600px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+nav.main{background:var(--ink);color:var(--bone);position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line-strong)}
+nav.main .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;min-height:72px}
+.logo{font-family:var(--display);font-size:2.1rem;letter-spacing:.08em;text-transform:uppercase;line-height:.9}
+.logo span{color:var(--orange)}
+nav.main ul{display:flex;gap:24px;list-style:none;justify-content:center}
+.navlink{font:600 .9rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:14px 0;display:inline-block;border-bottom:2px solid transparent;min-height:44px}
+.navlink:hover,.navlink:focus-visible{border-color:var(--orange);color:var(--bone)}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 22px;border:2px solid var(--orange);text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font:700 .86rem/1 var(--mono);background:var(--orange);color:var(--bone)}
+.cta:hover,.cta:focus-visible{background:transparent;color:var(--orange)}
+.cta.ghost{background:transparent;border-color:var(--bone);color:var(--bone)}
+.cta.ghost:hover,.cta.ghost:focus-visible{border-color:var(--orange);color:var(--orange)}
 
-/* sections */
-section{padding:60px 0}
-section.alt{background:#fff}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-@media(max-width:860px){.grid4,.grid3,.grid2{grid-template-columns:1fr}.hero-visual{display:none}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
-.card h3{margin-bottom:8px;font-size:1.08rem}
-.card p{color:var(--muted);font-size:.93rem}
-.card ul{margin:10px 0 0 18px;color:var(--muted);font-size:.9rem}
-.card ul li{margin-bottom:4px}
-.card .mini-cta{display:inline-block;margin-top:14px;color:var(--amber-dk);font-weight:700;font-size:.9rem;text-decoration:none}
-.ico{font-size:1.6rem;margin-bottom:10px;display:block}
+header.hero{background:var(--ink);color:var(--bone);border-bottom:1px solid var(--line-strong)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(140px,2fr);gap:32px;padding:72px 0 60px}
+.hero-copy{padding-right:24px}
+.kicker,.credential-rail,.eyebrow,.ticket-tag,.mini-note,.demo-label{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}
+.kicker{display:block;color:rgba(244,241,234,.72);font-size:.8rem;margin-bottom:18px}
+.hero h1{font-family:var(--display);font-size:clamp(4.6rem,15vw,10rem);line-height:.82;text-transform:uppercase;letter-spacing:.02em;max-width:760px}
+.hero h1 .accent{color:var(--orange)}
+.hero .lead{max-width:620px;margin:20px 0 28px;color:rgba(244,241,234,.82);font-size:1.06rem}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-spec{margin-top:28px;padding-top:18px;border-top:1px solid var(--line-strong);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.hero-spec div{border-left:1px solid var(--line-strong);padding-left:14px}
+.hero-spec span{display:block;font:600 .74rem/1.3 var(--mono);color:rgba(244,241,234,.62);text-transform:uppercase;letter-spacing:.12em;margin-bottom:7px}
+.hero-spec strong{font-size:1rem;font-weight:600}
+.credential-rail{writing-mode:vertical-rl;transform:rotate(180deg);justify-self:end;align-self:stretch;border-left:1px solid var(--line-strong);padding-left:14px;color:rgba(244,241,234,.78);font-size:.78rem}
 
-/* steps */
-.step{display:flex;gap:16px;align-items:flex-start}
-.step .n{background:var(--amber);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.section{padding:56px 0;background:var(--bone)}
+.section.ink{background:var(--ink);color:var(--bone);border-top:1px solid var(--line-strong)}
+.section-head{display:grid;grid-template-columns:80px minmax(0,1fr);gap:18px;align-items:start;margin-bottom:28px}
+.marker{font-family:var(--display);font-size:4.8rem;line-height:.82;color:var(--orange)}
+.section.ink .marker{color:var(--bone)}
+.section-title{font-family:var(--display);font-size:3rem;line-height:.9;text-transform:uppercase;letter-spacing:.04em}
+.section-intro{margin-top:8px;max-width:720px;color:var(--steel)}
+.section.ink .section-intro{color:rgba(244,241,234,.76)}
 
-/* credentials strip */
-.creds{background:var(--steel);color:#c9d4de;padding:34px 0;text-align:center;font-size:.95rem}
-.creds b{color:#fff}
-.creds span{margin:0 18px;white-space:nowrap}
+.editorial-split{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;border-top:1px solid var(--line);padding-top:22px}
+.ruled-list{list-style:none;border-top:1px solid var(--line)}
+.ruled-list li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ruled-list strong{font-family:var(--mono);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+.section.ink .ruled-list strong{color:rgba(244,241,234,.62)}
+.ruled-list h3{font-size:1.12rem;margin-bottom:4px}
+.ruled-list p{color:var(--steel)}
+.section.ink .ruled-list p{color:rgba(244,241,234,.78)}
+.side-note{border-left:2px solid var(--orange);padding-left:18px}
+.side-note p+p{margin-top:14px}
 
-/* gallery placeholders */
-.ph{background:linear-gradient(135deg,#3d4c58,#5a6b78);border-radius:10px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#e8edf2;font-weight:700;text-align:center;padding:12px;font-size:.9rem}
+.service-rows{border-top:1px solid var(--line)}
+.service-row{display:grid;grid-template-columns:76px minmax(0,1.2fr) minmax(0,.8fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.service-row .num{font-family:var(--display);font-size:2.6rem;line-height:.8;color:var(--orange)}
+.service-row h3{font-family:var(--display);font-size:2rem;line-height:.88;text-transform:uppercase;letter-spacing:.04em}
+.service-row p{color:rgba(244,241,234,.8)}
+.service-row ul{list-style:none;font:500 .86rem/1.6 var(--mono);color:rgba(244,241,234,.68)}
+.service-row li::before{content:"— ";color:var(--orange)}
 
-/* form */
+.creds{background:var(--bone);padding:0}
+.creds .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.creds-item{padding:18px;border-right:1px solid var(--line);font:600 .84rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.creds-item:last-child{border-right:none}
+.creds-item strong{display:block;font-family:var(--display);font-size:2rem;line-height:.85;color:var(--orange);margin-bottom:6px}
+
+.ticket-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ticket{min-height:240px;border:2px solid currentColor;padding:18px;display:flex;flex-direction:column;justify-content:space-between;background:transparent}
+.ticket-tag{font-size:.72rem;color:var(--orange)}
+.ticket h3{font-family:var(--display);font-size:1.8rem;line-height:.88;text-transform:uppercase;letter-spacing:.04em;max-width:220px}
+.ticket p{color:inherit;opacity:.78;max-width:240px}
+.stamp{align-self:flex-end;border:1px solid var(--orange);padding:8px 10px;font:700 .74rem/1 var(--mono);color:var(--orange);transform:rotate(-6deg)}
+
+.process-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;border-top:1px solid var(--line);padding-top:22px}
+.process-list{list-style:none}
+.process-list li{display:grid;grid-template-columns:60px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.process-list .n{font-family:var(--display);font-size:2.2rem;line-height:.82;color:var(--orange)}
+.process-list p{color:var(--steel)}
+.section.ink .process-list p{color:rgba(244,241,234,.76)}
+
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
+.contact-sheet{border-top:1px solid var(--line);padding-top:18px}
+.contact-sheet dl{display:grid;grid-template-columns:150px minmax(0,1fr);row-gap:10px;font-size:.95rem}
+.contact-sheet dt{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--steel)}
+.contact-sheet dd{margin:0}
+.form-shell{border:1px solid var(--line);padding:22px;background:#fff}
+.form-shell h3{font-family:var(--display);font-size:2rem;line-height:.9;text-transform:uppercase;margin-bottom:18px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
-label{font-weight:600;font-size:.88rem;display:block;margin-bottom:5px}
-input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;font-family:inherit;background:#fff}
+label{display:block;font:600 .82rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+input,select,textarea{width:100%;min-height:44px;padding:11px 12px;border:1px solid var(--line);background:var(--bone);color:var(--ink);font:400 .96rem/1.4 var(--body)}
+textarea{min-height:124px;resize:vertical}
 .full{grid-column:1/-1}
+#form-ok{display:none;color:var(--orange);font:700 .86rem/1.4 var(--mono);margin-top:12px;text-transform:uppercase;letter-spacing:.08em}
 
-/* footer */
-footer{background:var(--ink);color:#9aa7b1;padding:56px 0 28px;font-size:.92rem}
-footer h4{color:#fff;margin-bottom:12px}
+.demo-note{background:var(--ink);color:rgba(244,241,234,.8);padding:12px 0;font:600 .76rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+footer{background:var(--ink);color:var(--bone);padding:40px 0 28px;border-top:1px solid var(--line-strong)}
+.footer-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr .9fr;gap:24px}
+footer h4{font-family:var(--display);font-size:1.6rem;line-height:.9;text-transform:uppercase;margin-bottom:10px}
 footer ul{list-style:none}
-footer li{margin-bottom:6px}
-footer a{color:#c9d4de;text-decoration:none}
-.foot-bottom{border-top:1px solid #2a333b;margin-top:36px;padding-top:20px;text-align:center;font-size:.82rem}
-.demo-note{background:#fff6e8;border:1px solid #f0d9b0;color:#7a5a1e;font-size:.8rem;text-align:center;padding:8px}
+footer li+li{margin-top:7px}
+.foot-bottom{margin-top:26px;padding-top:16px;border-top:1px solid var(--line-strong);font:600 .74rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(244,241,234,.65)}
 
-/* chat bot */
-#bot-fab{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--amber);color:#fff;border:none;border-radius:999px;padding:7px 24px 7px 7px;font-weight:800;font-size:1.1rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.28);display:inline-flex;align-items:center}
-#bot-panel{position:fixed;bottom:80px;right:22px;width:340px;max-width:calc(100vw - 32px);background:#fff;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.16);border:1px solid rgba(0,0,0,.06);z-index:101;display:none;flex-direction:column;overflow:hidden;font-family:'Inter','SF Pro Text',-apple-system,'Helvetica Neue','Segoe UI',sans-serif}
+#bot-fab{position:fixed;right:20px;bottom:20px;z-index:100;background:var(--ink);color:var(--bone);border:2px solid var(--orange);padding:8px 18px 8px 8px;display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font:700 .9rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.bot-fab-face{width:72px;height:72px;object-fit:cover;object-position:center 20%;margin-right:12px;border:1px solid var(--orange)}
+#bot-panel{position:fixed;right:20px;bottom:104px;width:360px;max-width:calc(100vw - 24px);background:var(--ink);color:var(--bone);border:1px solid var(--orange);display:none;flex-direction:column;z-index:101}
 #bot-panel.open{display:flex}
-.bot-head{background:#fff;color:#14171a;padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(0,0,0,.07)}
-.bot-avatar{width:44px;height:44px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;object-fit:cover;object-position:center 20%}
-.bot-head b{font-size:.95rem;font-weight:600;letter-spacing:-.01em}
-.bot-fab-face{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:center 20%;vertical-align:middle;margin-right:12px;border:3px solid rgba(255,255,255,.85);box-shadow:0 3px 10px rgba(0,0,0,.3)}
-.bot-head small{display:block;color:#8a8f98;font-weight:400;font-size:.76rem;margin-top:1px}
-#bot-log{padding:18px;height:300px;overflow-y:auto;background:#fff;display:flex;flex-direction:column;gap:14px}
-.msg{max-width:88%;padding:0;font-size:.92rem;line-height:1.5;color:#1d1d1f}
-.msg.bot{background:none;border:none;align-self:flex-start;padding-right:6px}
-.msg.user{background:#f0f0f2;color:#1d1d1f;align-self:flex-end;border-radius:16px;padding:9px 14px;max-width:80%}
-.bot-input{display:flex;border-top:1px solid var(--line)}
-.bot-input input{border:none;border-radius:0;flex:1}
-.bot-input button#bot-send{background:#14171a;color:#fff;border:none;padding:0 20px;font-weight:600;font-size:.9rem;cursor:pointer}
-
-/* Marina agent additions (live brain · dynamic voice · video avatar) — contained to the bot panel, page layout unchanged */
-.bot-ctl{background:none;border:none;cursor:pointer;font-size:1rem;color:#9aa0aa;padding:2px 4px;opacity:.9}
-.bot-ctl:hover{opacity:1}
-.bot-ctl.on{color:var(--amber);opacity:1}
-#bot-video-wrap{display:none;position:relative;background:#f6f7fb;padding:16px;box-sizing:border-box}
+.bot-head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line-strong);background:rgba(232,98,44,.08)}
+.bot-avatar{width:48px;height:48px;object-fit:cover;object-position:center 20%;border:1px solid var(--orange)}
+.bot-head b{font:700 1rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.bot-head small{display:block;margin-top:4px;font:600 .72rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(244,241,234,.62)}
+#bot-video-wrap{display:none;position:relative;padding:14px;border-bottom:1px solid var(--line-strong);background:#111417}
 #bot-panel.video-mode #bot-video-wrap{display:block}
-#bot-video-el{display:block;width:100%;max-width:620px;aspect-ratio:4/3;margin:0 auto;object-fit:cover;object-position:center 30%;background:#171922;border:1px solid rgba(20,30,55,.12);border-radius:18px;box-shadow:0 12px 32px rgba(28,38,70,.16),0 2px 8px rgba(28,38,70,.08)}
-#bot-video-live{position:absolute;top:28px;left:28px;z-index:5;display:flex;align-items:center;gap:6px;padding:6px 10px;color:#fff;background:rgba(15,18,28,.68);backdrop-filter:blur(8px);border-radius:999px;font:700 11px/1 system-ui,sans-serif;letter-spacing:.08em}
-#bot-video-live i{width:7px;height:7px;border-radius:50%;background:#35df85;display:inline-block;box-shadow:0 0 0 3px rgba(53,223,133,.18);animation:vblink 1.2s infinite}
-@keyframes vblink{50%{opacity:.15}}
-#bot-avatar{display:inline-block;transform-origin:50% 88%}
-.bc-typing{display:flex;gap:3px;align-items:center}
-.bc-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block;animation:bdot 1s infinite}
-.bc-typing span:nth-child(2){animation-delay:.15s}
-.bc-typing span:nth-child(3){animation-delay:.3s}
-@keyframes bdot{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+#bot-video-el{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%;background:#0d0f11;border:1px solid var(--line-strong)}
+#bot-video-live{position:absolute;top:26px;left:26px;padding:6px 8px;border:1px solid var(--orange);background:var(--ink);font:700 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--bone);display:flex;align-items:center;gap:6px}
+#bot-video-live i{display:inline-block;width:8px;height:8px;background:var(--orange)}
+#bot-log{padding:16px;height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;background:var(--ink)}
+.msg{max-width:88%;padding:0;font-size:.92rem;line-height:1.5}
+.msg.bot{align-self:flex-start;color:var(--bone)}
+.msg.user{align-self:flex-end;padding:10px 12px;border:1px solid var(--orange);background:rgba(232,98,44,.08);color:var(--bone)}
+.bc-typing{display:flex;gap:4px;align-items:center}
+.bc-typing span{width:6px;height:6px;background:var(--steel);display:inline-block}
+.bot-input{display:grid;grid-template-columns:1fr auto auto auto auto;border-top:1px solid var(--line-strong)}
+.bot-input input{border:none;background:transparent;color:var(--bone);min-height:48px}
+.bot-input input::placeholder{color:rgba(244,241,234,.48)}
+.bot-ctl,#bot-send{min-width:48px;min-height:48px;border:none;border-left:1px solid var(--line-strong);background:transparent;color:var(--bone);cursor:pointer;font:700 .82rem/1 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.bot-ctl.on,#bot-send:hover,#bot-send:focus-visible,.bot-ctl:hover,.bot-ctl:focus-visible{background:rgba(232,98,44,.12);color:var(--orange)}
 
-@media(max-width:700px){
-  nav.main ul{display:none}
-  .topbar .wrap{flex-direction:column;gap:4px;font-size:.78rem;text-align:center}
-  .hero-ctas a.cta{flex:1;min-width:140px;text-align:center}
-  #bot-fab{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:5px 16px 5px 5px;font-size:.92rem}
-  .bot-fab-face{width:68px;height:68px;margin-right:10px}
-  #bot-panel{bottom:calc(70px + env(safe-area-inset-bottom));max-height:72vh}
-  #bot-log{height:min(280px,48vh)}
-  #bot-video-wrap{padding:12px}
-  #bot-video-el{height:clamp(220px,37vh,280px);aspect-ratio:auto;object-position:center 25%}
-  #bot-video-live{top:24px;left:24px}
-  .creds span{display:inline-block;margin:5px 12px}
-  #bot-fab{right:14px !important}
+@media (max-width:920px){
+  .hero-grid,.editorial-split,.process-grid,.contact-grid{grid-template-columns:1fr}
+  .credential-rail{writing-mode:horizontal-tb;transform:none;border-left:none;border-top:1px solid var(--line-strong);padding:14px 0 0;justify-self:start}
+  .hero-copy{padding-right:0}
+  .ticket-grid,.creds .wrap,.footer-grid{grid-template-columns:1fr 1fr}
+  .service-row{grid-template-columns:56px 1fr}
+  .service-row ul{grid-column:2}
+}
+@media (max-width:700px){
+  .wrap{width:min(100% - 28px,1180px)}
+  .site::before{display:none}
+  .rulebar .wrap,nav.main .wrap{grid-template-columns:1fr;justify-items:start}
+  nav.main ul{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:16px}
+  .hero-grid{padding:52px 0 44px}
+  .hero h1{font-size:clamp(3.4rem,22vw,6rem)}
+  .hero-spec,.ticket-grid,.creds .wrap,.footer-grid,.form-grid{grid-template-columns:1fr}
+  .section-head{grid-template-columns:56px 1fr}
+  .section-title{font-size:2.3rem}
+  .contact-sheet dl{grid-template-columns:1fr}
+  #bot-fab{right:14px;bottom:14px;padding-right:14px}
+  .bot-fab-face{width:58px;height:58px;margin-right:10px}
+  #bot-panel{right:14px;bottom:92px;width:min(360px,calc(100vw - 20px))}
 }
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <div><b>Licensed & Bonded</b> · ROC 339036</div>
-    <div>Second-Generation Craftsmen · Phoenix, AZ · <a href="tel:6027152510">602.715.2510</a></div>
-  </div>
-</div>
-
-<nav class="main">
-  <div class="wrap">
-    <div class="logo">VULCAN<span>FENCE</span></div>
-    <ul>
-      <li><a class="navlink" href="#services">Services</a></li>
-      <li><a class="navlink" href="#work">Our Work</a></li>
-      <li><a class="navlink" href="#estimate">Contact</a></li>
-    </ul>
-    <a class="cta" href="#estimate">Free Estimate</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap" style="display:flex;gap:40px;align-items:center;position:relative;z-index:1;flex-wrap:wrap">
-    <div style="flex:1;min-width:280px">
-    <div class="hero-chips">
-      <span class="chip">ROC 339036</span>
-      <span class="chip">Residential & Commercial</span>
-      <span class="chip">25+ Years Experience</span>
-      <span class="chip">Phoenix Metro</span>
-    </div>
-    <h1>Built By Fencers &amp; Welders.<br><em>Forged To Last.</em></h1>
-    <p class="lead">Iron, chain link, masonry, security and privacy fencing — custom fabricated by a second-generation family trade. Quality you can see, workmanship that holds.</p>
-    <div class="hero-ctas">
-      <a class="cta" href="#estimate">Get My Free Estimate</a>
-      <a class="cta ghost" href="tel:6027152510">Call 602.715.2510</a>
-    </div>
-    </div>
-    <div class="hero-visual" style="width:270px;flex-shrink:0;display:flex;flex-direction:column;gap:14px">
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
-        <div style="font-size:2.2rem;font-weight:800;color:var(--amber)">25+</div>
-        <div style="font-size:.85rem;color:#c8d3dc">Years in the trade</div>
-      </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
-        <div style="font-size:1.3rem;font-weight:800;color:var(--amber)">ROC 339036</div>
-        <div style="font-size:.85rem;color:#c8d3dc">Licensed &amp; bonded</div>
-      </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;text-align:center">
-        <div style="font-size:2.2rem;font-weight:800;color:var(--amber)">2nd</div>
-        <div style="font-size:.85rem;color:#c8d3dc">Generation family trade</div>
-      </div>
+<div class="site">
+  <div class="rulebar">
+    <div class="wrap">
+      <div class="rulebar-meta"><span>Licensed & Bonded</span><span>ROC 339036</span><span>Phoenix Metro</span></div>
+      <div class="rulebar-meta"><a href="tel:6027152510">602.715.2510</a></div>
     </div>
   </div>
-</header>
 
-<section class="alt" id="why">
-  <div class="wrap">
-    <h2 class="sec">Why Vulcan Fence</h2>
-    <p class="sub">We are the second generation of a family of fencers and welders — the trade is in the blood, and the standards show in every weld, post, and panel.</p>
-    <div class="grid4">
-      <div class="card"><span class="ico">🔥</span><h3>Family Trade, 25+ Years</h3><p>Two generations of fencers and welders. Not a franchise — craftsmen.</p></div>
-      <div class="card"><span class="ico">🛠️</span><h3>Custom Fabrication</h3><p>Iron and steel work built in-house to your property's exact specs.</p></div>
-      <div class="card"><span class="ico">🏗️</span><h3>Residential & Commercial</h3><p>Backyards to job sites — security, privacy, and decorative systems.</p></div>
-      <div class="card"><span class="ico">📋</span><h3>Licensed & Bonded</h3><p>ROC 339036. Fully credentialed Arizona contractor, no shortcuts.</p></div>
+  <nav class="main">
+    <div class="wrap">
+      <div class="logo">Vulcan<span>Fence</span></div>
+      <ul>
+        <li><a class="navlink" href="#services">Services</a></li>
+        <li><a class="navlink" href="#work">Work Tickets</a></li>
+        <li><a class="navlink" href="#process">Process</a></li>
+        <li><a class="navlink" href="#estimate">Contact</a></li>
+      </ul>
+      <a class="cta" href="#estimate">Free Estimate</a>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section id="services">
-  <div class="wrap">
-    <h2 class="sec">What We Build</h2>
-    <p class="sub">Masters of many trades — every system below is built by our own crew, not subcontracted out.</p>
-    <div class="grid3">
-      <div class="card"><h3>Iron / Welding</h3><p>Ornamental iron, security bars, custom weldments.</p><ul><li>Decorative & security iron</li><li>In-house welding</li><li>Powder-coat ready finishes</li></ul><a class="mini-cta" href="#estimate">Price my iron work →</a></div>
-      <div class="card"><h3>Chain Link</h3><p>The workhorse — done right, tensioned tight.</p><ul><li>Residential & commercial</li><li>Gates & access points</li><li>Repairs & extensions</li></ul><a class="mini-cta" href="#estimate">Get chain link pricing →</a></div>
-      <div class="card"><h3>Masonry</h3><p>Block walls that stand for decades.</p><ul><li>Privacy block walls</li><li>Decorative caps</li><li>Repairs & rebuilds</li></ul><a class="mini-cta" href="#estimate">Quote my block wall →</a></div>
-      <div class="card"><h3>Security</h3><p>Barriers that keep people out.</p><ul><li>Security fencing systems</li><li>Barbed tape & razor wire</li><li>Commercial perimeters</li></ul><a class="mini-cta" href="#estimate">Secure my property →</a></div>
-      <div class="card"><h3>Privacy</h3><p>Quiet, private, and clean-looking.</p><ul><li>Solid panel systems</li><li>Screen walls</li><li>Noise-reducing builds</li></ul><a class="mini-cta" href="#estimate">Plan my privacy fence →</a></div>
-      <div class="card"><h3>Custom</h3><p>If you can draw it, we can weld it.</p><ul><li>Custom gates & entries</li><li>Mixed-material designs</li><li>One-off architectural work</li></ul><a class="mini-cta" href="#estimate">Design my custom build →</a></div>
-    </div>
-  </div>
-</section>
-
-<div class="creds">
-  <span><b>ROC 339036</b></span><span><b>Licensed & Bonded</b></span><span><b>Second-Generation Family Trade</b></span><span><b>Phoenix, Arizona</b></span>
-</div>
-
-<section class="alt" id="work">
-  <div class="wrap">
-    <h2 class="sec">Our Work</h2>
-    <p class="sub">A sample of what we build across the Valley. <em>(Demo — photo slots ready for Vulcan's real project gallery.)</em></p>
-    <div class="grid3">
-      <div class="ph">Ornamental Iron Gate — Placeholder</div>
-      <div class="ph">Commercial Chain Link — Placeholder</div>
-      <div class="ph">Block Wall w/ Cap — Placeholder</div>
-      <div class="ph">Security Perimeter — Placeholder</div>
-      <div class="ph">Privacy Screen Wall — Placeholder</div>
-      <div class="ph">Custom Weldment — Placeholder</div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <h2 class="sec">How It Works</h2>
-    <p class="sub">Straightforward, like a handshake should be.</p>
-    <div class="grid3">
-      <div class="step"><div class="n">1</div><div><h3>Tell Us What You Need</h3><p style="color:var(--muted);font-size:.93rem">Call, chat with Mark, or fill the form. We walk the property and answer the right questions.</p></div></div>
-      <div class="step"><div class="n">2</div><div><h3>Clear Written Estimate</h3><p style="color:var(--muted);font-size:.93rem">Scope, materials, timeline. No mystery fees, no pressure.</p></div></div>
-      <div class="step"><div class="n">3</div><div><h3>Built By Our Crew</h3><p style="color:var(--muted);font-size:.93rem">Our welders and fencers do the work. Site left clean. Built to last.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="estimate">
-  <div class="wrap">
-    <div class="grid2">
-      <div>
-        <h2 class="sec">Ready To Build?</h2>
-        <p class="sub">Tell us about your project and we'll get back to you fast. Prefer to talk? Call <b><a href="tel:6027152510" style="color:var(--amber-dk)">602.715.2510</a></b> — or ask Mark right now.</p>
-        <div class="card" style="margin-top:18px">
-          <h3>📞 Contact</h3>
-          <p><b>Phone:</b> 602.715.2510<br><b>Location:</b> Phoenix, Arizona<br><b>Service Area:</b> Phoenix Metro &amp; surrounding<br><b>License:</b> ROC 339036 — Licensed &amp; Bonded</p>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="kicker">Industrial Foundry Direction / Constitution v2</span>
+        <h1>Built by <span class="accent">fencers</span><br>and welders.</h1>
+        <p class="lead">Second-generation fence contractors handling iron, chain link, masonry, security, and privacy work across Phoenix. This demo keeps the facts plain: ROC 339036, family trade, free estimates.</p>
+        <div class="hero-actions">
+          <a class="cta" href="#estimate">Request Estimate</a>
+          <a class="cta ghost" href="tel:6027152510">Call 602.715.2510</a>
+        </div>
+        <div class="hero-spec" aria-label="Credentials and service notes">
+          <div><span>Trade</span><strong>2nd-generation crew</strong></div>
+          <div><span>Coverage</span><strong>Phoenix Metro</strong></div>
+          <div><span>Scope</span><strong>Residential + commercial</strong></div>
         </div>
       </div>
-      <form class="card" id="lead-form">
-        <h3 style="margin-bottom:16px">Request Your Free Estimate</h3>
-        <div class="form-grid">
-          <div><label for="f-name">Name *</label><input id="f-name" required placeholder="Your name"></div>
-          <div><label for="f-phone">Phone *</label><input id="f-phone" type="tel" required placeholder="(602) 555-0123"></div>
-          <div class="full"><label for="f-addr">Property address or cross streets</label><input id="f-addr" placeholder="e.g. 35th Ave & Peoria, Phoenix"></div>
-          <div class="full"><label for="f-type">Fence Type *</label>
-            <select id="f-type" required>
-              <option value="">Select a service…</option>
-              <option>Iron / Welding</option><option>Chain Link</option><option>Masonry / Block Wall</option>
-              <option>Security Fencing</option><option>Privacy</option><option>Custom</option><option>Not Sure</option>
-            </select></div>
-          <div class="full"><label for="f-notes">Project details</label><textarea id="f-notes" rows="3" placeholder="Linear feet, gates, height, timeline…"></textarea></div>
-          <div class="full"><button class="cta" type="submit" style="width:100%">Get My Free Estimate</button></div>
+      <div class="credential-rail">ROC 339036 / LICENSED & BONDED / DEMO ART DIRECTION / NO STOCK PROJECT PHOTOS / VERTICAL CREDENTIAL RAIL</div>
+    </div>
+  </header>
+
+  <section class="section" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="marker">№1</div>
+        <div>
+          <h2 class="section-title">Shop standards</h2>
+          <p class="section-intro">The old template promised too much with generic cards. This pass makes the sales story feel like a real work order: straight facts, visible rules, and demo labeling instead of invented proof.</p>
         </div>
-        <p id="form-ok" style="display:none;color:#1d7a3e;font-weight:700;margin-top:12px">✓ Got it — Vulcan will reach out shortly. (Demo: leads are captured locally.)</p>
-      </form>
+      </div>
+      <div class="editorial-split">
+        <ol class="ruled-list">
+          <li>
+            <strong>01</strong>
+            <div><h3>Family trade</h3><p>Vulcan Fence is presented as a second-generation fencing and welding crew, not a franchise or reseller.</p></div>
+          </li>
+          <li>
+            <strong>02</strong>
+            <div><h3>Licensed work</h3><p>Arizona ROC 339036 stays visible in the rule bar, hero rail, and contact sheet.</p></div>
+          </li>
+          <li>
+            <strong>03</strong>
+            <div><h3>Custom fabrication</h3><p>Iron, gates, chain link, masonry, and security jobs are framed as trade work built to spec.</p></div>
+          </li>
+        </ol>
+        <aside class="side-note">
+          <p class="eyebrow">Demo note</p>
+          <p>This remains an honest demo site by BlueColumn AI for Vulcan Fence LLC. Placeholder areas are styled as work tickets so the site can accept real project photography later without pretending they exist now.</p>
+          <p class="mini-note">Accent color usage is intentionally narrow so safety orange stays a focal tool, not wallpaper.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ink" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="marker">№2</div>
+        <div>
+          <h2 class="section-title">Build list</h2>
+          <p class="section-intro">Services are broken into ruled rows instead of identical promo cards, closer to an estimate sheet than a theme marketplace layout.</p>
+        </div>
+      </div>
+      <div class="service-rows">
+        <article class="service-row">
+          <div class="num">01</div>
+          <div>
+            <h3>Iron / welding</h3>
+            <p>Ornamental iron, security bars, custom gates, and welded assemblies built to the property requirements.</p>
+          </div>
+          <ul>
+            <li>In-house fabrication</li>
+            <li>Gate and entry work</li>
+            <li>Decorative and security applications</li>
+          </ul>
+        </article>
+        <article class="service-row">
+          <div class="num">02</div>
+          <div>
+            <h3>Chain link</h3>
+            <p>Residential and commercial chain link installs, repairs, extensions, and access points.</p>
+          </div>
+          <ul>
+            <li>Perimeter runs</li>
+            <li>Repair and add-on work</li>
+            <li>Gate integration</li>
+          </ul>
+        </article>
+        <article class="service-row">
+          <div class="num">03</div>
+          <div>
+            <h3>Masonry / block wall</h3>
+            <p>Privacy walls, caps, repairs, and rebuilds where masonry is part of the fence scope.</p>
+          </div>
+          <ul>
+            <li>Privacy wall construction</li>
+            <li>Decorative caps</li>
+            <li>Repair and rebuild scope</li>
+          </ul>
+        </article>
+        <article class="service-row">
+          <div class="num">04</div>
+          <div>
+            <h3>Security + privacy</h3>
+            <p>Commercial perimeter systems, privacy screens, and protective layouts for residential and job-site needs.</p>
+          </div>
+          <ul>
+            <li>Security fencing systems</li>
+            <li>Privacy screen walls</li>
+            <li>Custom mixed-material builds</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="creds" aria-label="Credential strip">
+    <div class="wrap">
+      <div class="creds-item"><strong>ROC</strong>339036 / licensed & bonded</div>
+      <div class="creds-item"><strong>25+</strong>years in the trade</div>
+      <div class="creds-item"><strong>2ND</strong>generation family crew</div>
+      <div class="creds-item"><strong>AZ</strong>Phoenix, Arizona service area</div>
     </div>
   </div>
-</section>
 
-<div class="demo-note">DEMO WEBSITE — Built by BlueColumn AI (bluecolumn.ai) to show Vulcan Fence what a modern site + AI assistant could look like. Not affiliated with Vulcan Fence LLC.</div>
-
-<footer>
-  <div class="wrap">
-    <div class="grid4">
-      <div><h4>Vulcan Fence LLC</h4><p>Second-generation fencers &amp; welders serving Phoenix since day one. ROC 339036.</p></div>
-      <div><h4>Services</h4><ul><li>Iron / Welding</li><li>Chain Link</li><li>Masonry</li><li>Security</li><li>Privacy</li><li>Custom</li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="tel:6027152510">602.715.2510</a></li><li>Phoenix, AZ</li><li>Phoenix Metro</li></ul></div>
-      <div><h4>Ready to Start?</h4><p>Free estimates, fast response.</p><a class="cta" href="#estimate">Get Free Estimate</a></div>
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="marker">№3</div>
+        <div>
+          <h2 class="section-title">Work tickets</h2>
+          <p class="section-intro">These are honest placeholders for future project photography. No fake dashboards, no stock-site language — just clearly stamped slots ready for real installs.</p>
+        </div>
+      </div>
+      <div class="ticket-grid">
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 001</div>
+            <h3>Ornamental iron gate slot</h3>
+            <p>Reserved for Vulcan-installed gate photography and brief project notes.</p>
+          </div>
+          <div class="stamp">DEMO SLOT</div>
+        </article>
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 002</div>
+            <h3>Commercial chain link slot</h3>
+            <p>Reserved for real perimeter work once the client provides approved images.</p>
+          </div>
+          <div class="stamp">PHOTO READY</div>
+        </article>
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 003</div>
+            <h3>Block wall and cap slot</h3>
+            <p>Reserved for masonry scope examples with actual dimensions and location notes.</p>
+          </div>
+          <div class="stamp">STAMPED</div>
+        </article>
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 004</div>
+            <h3>Security perimeter slot</h3>
+            <p>Reserved for commercial security fencing documentation and detail shots.</p>
+          </div>
+          <div class="stamp">FIELD FILE</div>
+        </article>
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 005</div>
+            <h3>Privacy screen wall slot</h3>
+            <p>Reserved for privacy-focused residential work and finish references.</p>
+          </div>
+          <div class="stamp">CLIENT ART</div>
+        </article>
+        <article class="ticket">
+          <div>
+            <div class="ticket-tag">Ticket / 006</div>
+            <h3>Custom weldment slot</h3>
+            <p>Reserved for one-off fabrication work once approved job imagery is available.</p>
+          </div>
+          <div class="stamp">PENDING</div>
+        </article>
+      </div>
     </div>
-    <div class="foot-bottom">© 2026 Vulcan Fence LLC · ROC 339036 · Licensed &amp; Bonded</div>
+  </section>
+
+  <section class="section ink" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="marker">№4</div>
+        <div>
+          <h2 class="section-title">Estimate path</h2>
+          <p class="section-intro">The flow stays simple: describe the job, receive a written estimate, then let Vulcan’s own crew build it.</p>
+        </div>
+      </div>
+      <div class="process-grid">
+        <ol class="process-list">
+          <li><div class="n">01</div><div><h3>Tell Mark or call direct</h3><p>Use the form, the desk panel, or the listed phone number to describe the property and scope.</p></div></li>
+          <li><div class="n">02</div><div><h3>Get a written estimate</h3><p>Scope, materials, and timing are clarified before work starts.</p></div></li>
+          <li><div class="n">03</div><div><h3>Build with the crew</h3><p>The pitch stays grounded in Vulcan’s own welders and fencers doing the job.</p></div></li>
+        </ol>
+        <div class="side-note">
+          <p class="eyebrow">Why this section changed</p>
+          <p>The previous version leaned on soft marketing language and identical tiles. This version treats the process like a job handoff: numbered, direct, and easy to scan on mobile.</p>
+          <p class="mini-note">All tap targets remain 44px or larger, motion stays reduced-friendly, and focus states are preserved.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="estimate">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="marker">№5</div>
+        <div>
+          <h2 class="section-title">Contact + intake</h2>
+          <p class="section-intro">Ask for pricing, leave project notes, or call Vulcan Fence directly. The form still stores demo leads locally.</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-sheet">
+          <p class="demo-label" style="margin-bottom:12px;">Service desk sheet</p>
+          <dl>
+            <dt>Phone</dt><dd><a href="tel:6027152510">602.715.2510</a></dd>
+            <dt>Location</dt><dd>Phoenix, Arizona</dd>
+            <dt>Service area</dt><dd>Phoenix Metro &amp; surrounding areas</dd>
+            <dt>License</dt><dd>ROC 339036 — Licensed &amp; Bonded</dd>
+            <dt>Demo status</dt><dd>Built by BlueColumn AI as a sales demo. Not affiliated with Vulcan Fence LLC’s live site.</dd>
+          </dl>
+        </div>
+        <form class="form-shell" id="lead-form">
+          <h3>Request free estimate</h3>
+          <div class="form-grid">
+            <div>
+              <label for="f-name">Name *</label>
+              <input id="f-name" required placeholder="Your name">
+            </div>
+            <div>
+              <label for="f-phone">Phone *</label>
+              <input id="f-phone" type="tel" required placeholder="(602) 555-0123">
+            </div>
+            <div class="full">
+              <label for="f-addr">Property address or cross streets</label>
+              <input id="f-addr" placeholder="35th Ave &amp; Peoria, Phoenix">
+            </div>
+            <div class="full">
+              <label for="f-type">Fence type *</label>
+              <select id="f-type" required>
+                <option value="">Select a service</option>
+                <option>Iron / Welding</option>
+                <option>Chain Link</option>
+                <option>Masonry / Block Wall</option>
+                <option>Security Fencing</option>
+                <option>Privacy</option>
+                <option>Custom</option>
+                <option>Not Sure</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="f-notes">Project details</label>
+              <textarea id="f-notes" rows="4" placeholder="Linear feet, gates, height, timeline"></textarea>
+            </div>
+            <div class="full">
+              <button class="cta" type="submit" style="width:100%">Send estimate request</button>
+            </div>
+          </div>
+          <p id="form-ok">Request logged — demo lead captured locally.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="demo-note">
+    <div class="wrap">Demo website — built by BlueColumn AI to show Vulcan Fence LLC a modern site and AI assistant direction. No client testimonials, stats, or project photos have been invented here.</div>
   </div>
-</footer>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Vulcan Fence LLC</h4>
+          <p>Second-generation fencing and welding trade serving Phoenix with iron, chain link, masonry, security, and privacy work.</p>
+        </div>
+        <div>
+          <h4>Core work</h4>
+          <ul>
+            <li>Iron / welding</li>
+            <li>Chain link</li>
+            <li>Masonry / block wall</li>
+            <li>Security + privacy</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Credentials</h4>
+          <ul>
+            <li>ROC 339036</li>
+            <li>Licensed &amp; bonded</li>
+            <li>Phoenix, Arizona</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Start here</h4>
+          <a class="cta ghost" href="#estimate">Open intake form</a>
+        </div>
+      </div>
+      <div class="foot-bottom">2026 / Vulcan Fence LLC demo / Constitution v2 retrofit / cache-bust 20260916a</div>
+    </div>
+  </footer>
+</div>
 
 <!-- Mark -->
-<button id="bot-fab"><img class="bot-fab-face" src="bot-face.png?v=20260911a" alt="Mark">Ask Mark</button>
+<button id="bot-fab"><img class="bot-fab-face" src="bot-face.png?v=20260916a" alt="Mark">Ask Mark</button>
 <div id="bot-panel" role="dialog" aria-label="Chat with Mark">
-  <div class="bot-head"><img class="bot-avatar" id="bot-avatar" src="bot-face.png?v=20260911a" alt="Mark"><div><b>Mark</b><small>Vulcan Fence LLC</small></div></div>
+  <div class="bot-head"><img class="bot-avatar" id="bot-avatar" src="bot-face.png?v=20260916a" alt="Mark"><div><b>Mark</b><small>Vulcan Fence LLC</small></div></div>
   <div id="bot-video-wrap" aria-hidden="true"><span id="bot-video-live"><i></i>LIVE</span><video id="bot-video-el" autoplay playsinline muted></video><audio id="bot-simli-audio" autoplay></audio></div>
   <div id="bot-log"></div>
   <div class="bot-input">
-    <input id="bot-in" placeholder="Ask about pricing, services…" aria-label="Message Mark">
-    <button id="bot-mute" class="bot-ctl" title="Voice on">🔊</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">🎤</button><button id="bot-video" class="bot-ctl" title="Live video avatar">🎥</button><button id="bot-send">Send</button>
+    <input id="bot-in" placeholder="Ask about pricing, services" aria-label="Message Mark">
+    <button id="bot-mute" class="bot-ctl" title="Voice on">VOL</button><button id="bot-mic" class="bot-ctl" title="Talk hands-free">MIC</button><button id="bot-video" class="bot-ctl" title="Live video avatar">VID</button><button id="bot-send">Send</button>
   </div>
 </div>
 
@@ -333,7 +558,7 @@ window.BOT_CFG={
   voiceId:'pNInz6obpgDQGcFmaJgB',
   greeting:"I'm Mark — second-generation fence contractor at Vulcan Fence LLC. Iron, chain link, block walls, security fencing, free estimates. What do you need?",
   suggestions:['Are you licensed?','What do you build?','How do estimates work?'],
-  placeholder:'Ask about pricing, services…',
+  placeholder:'Ask about pricing, services',
   intents:[
     {k:['price','cost','how much','quote','estimate'],t:"Every project is priced on linear footage, height, and material. I can't give exact numbers without the property details — but a free estimate takes about a minute. Want to fill the form, or should I take your name and number?"},
     {k:['iron','weld','metal','ornamental'],t:"Iron and welding is our specialty — second-generation welders. Ornamental iron, security bars, custom gates, all fabricated to your specs."},
@@ -394,23 +619,23 @@ window.BOT_CFG.pre=function(txt){
    v1 uses localStorage; production swaps to UTM/GA4 tagging per the spec. */
 (function(){
   var n=1;try{n=(+localStorage.getItem('vf_visits')||0)+1;localStorage.setItem('vf_visits',n);}catch(e){}
-  var cta=document.querySelector('.hero-ctas a.cta');
+  var cta=document.querySelector('.hero-actions a.cta');
   var note=document.createElement('p');
-  note.style.cssText='margin-top:12px;font-size:.85rem;color:var(--muted)';
+  note.style.cssText='margin-top:12px;font:600 .76rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(244,241,234,.62)';
   if(n>=4){
     if(cta)cta.textContent='Talk to Mark — Same-Day Callback';
     note.textContent='New projects this month are booking up — free estimates still go out same day.';
   }else if(n>=2){
-    if(cta)cta.textContent='Get My Free Estimate';
-    note.textContent='25+ years · Licensed & bonded ROC 339036 · Second-generation craftsmen';
+    if(cta)cta.textContent='Request Estimate';
+    note.textContent='25+ years / licensed & bonded / second-generation craftsmen';
   }else{
-    note.textContent='Second-generation fence and welding craftsmen — see the work below.';
+    note.textContent='Second-generation fence and welding craftsmen — review the work tickets below.';
   }
-  var hc=document.querySelector('.hero-ctas');
+  var hc=document.querySelector('.hero-actions');
   if(hc&&hc.parentNode)hc.parentNode.insertBefore(note,hc.nextSibling);
 })();
 </script>
-<script src="vendor/simli-client.js?v=20260910a"></script>
-<script src="marina-agent.js?v=20260911b"></script>
+<script src="vendor/simli-client.js?v=20260916a"></script>
+<script src="marina-agent.js?v=20260916a"></script>
 </body>
 </html>
