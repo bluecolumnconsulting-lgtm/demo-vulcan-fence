@@ -72,7 +72,8 @@ section.alt{background:#fff}
 .creds span{margin:0 18px;white-space:nowrap}
 
 /* gallery placeholders */
-.ph{background:#3d4c58;border-radius:10px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#e8edf2;font-weight:700;text-align:center;padding:12px;font-size:.9rem}
+.ph{background:#3d4c58;border-radius:10px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#e8edf2;font-weight:700;text-align:center;padding:12px;font-size:.9rem;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 
 /* form */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -229,14 +230,14 @@ footer a{color:#c9d4de;text-decoration:none}
 <section class="alt" id="work">
   <div class="wrap">
     <h2 class="sec">Our Work</h2>
-    <p class="sub">A sample of what we build across the Valley. <em>(Demo — photo slots ready for Vulcan's real project gallery.)</em></p>
+    <p class="sub">A sample of what we build across the Valley. <em>(Demo — sample work photography; ready to swap for Vulcan's own project gallery.)</em></p>
     <div class="grid3">
-      <div class="ph">Ornamental Iron Gate — Placeholder</div>
-      <div class="ph">Commercial Chain Link — Placeholder</div>
-      <div class="ph">Block Wall w/ Cap — Placeholder</div>
-      <div class="ph">Security Perimeter — Placeholder</div>
-      <div class="ph">Privacy Screen Wall — Placeholder</div>
-      <div class="ph">Custom Weldment — Placeholder</div>
+      <div class="ph"><img src="photos/cnc-brewery.jpg" alt="Ornamental iron gate components prepped in the Vulcan shop" loading="lazy"></div>
+      <div class="ph"><img src="photos/ballfield-chainlink.jpg" alt="Commercial chain-link fencing around a sports complex" loading="lazy"></div>
+      <div class="ph"><img src="photos/bobcat-ballpark.jpg" alt="Crew installing chain-link perimeter fencing at a ballpark" loading="lazy"></div>
+      <div class="ph"><img src="photos/hero-iron.jpg" alt="Rooftop security perimeter fencing with razor wire" loading="lazy"></div>
+      <div class="ph"><img src="photos/detail-6994.jpg" alt="Corrugated metal privacy screen wall detail" loading="lazy"></div>
+      <div class="ph"><img src="photos/detail-0881.jpg" alt="Custom ornamental eagle metalwork detail" loading="lazy"></div>
     </div>
   </div>
 </section>
